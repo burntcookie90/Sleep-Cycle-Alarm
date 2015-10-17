@@ -30,7 +30,7 @@ public class OptionsAdapter(context : Context, listener : OptionsAdapter.Options
 
     override fun getItemCount() : Int = optionList.size()
 
-    public trait OptionsAdapterListener{
+    public interface OptionsAdapterListener{
         fun onOptionItemSelected(position : Int)
     }
 }

@@ -65,7 +65,7 @@ class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
         options.forEach { adapter.addOption(it) }
     }
 
-    public trait OptionsFragmentInteractionListener {
+    public interface OptionsFragmentInteractionListener {
         fun onOptionSelected(option : Option)
     }
 }
