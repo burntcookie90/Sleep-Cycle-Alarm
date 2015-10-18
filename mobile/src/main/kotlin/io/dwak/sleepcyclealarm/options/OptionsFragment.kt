@@ -1,4 +1,4 @@
-package io.dwak.sleepycyclealarm.options
+package io.dwak.sleepcyclealarm.options
 
 import android.app.Activity
 import android.os.Bundle
@@ -11,10 +11,8 @@ import android.view.ViewGroup
 import butterknife.bindView
 import io.dwak.mvp_base.MvpFragment
 import io.dwak.sleepcyclealarm.R
-import io.dwak.sleepycyclealarm.adapter
-import io.dwak.sleepycyclealarm.layoutManager
-import io.dwak.sleepycyclealarm.model.Option
-import io.dwak.sleepycyclealarm.view.OptionsView
+import io.dwak.sleepcyclealarm.model.Option
+import io.dwak.sleepcyclealarm.view.OptionsView
 import kotlin.properties.Delegates
 
 class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
@@ -33,11 +31,11 @@ class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
     }
 
     override fun onAttach(activity : Activity?) {
-        super<MvpFragment>.onAttach(activity)
+        super.onAttach(activity)
         if(getActivity() is OptionsFragmentInteractionListener)
             interactionListener = getActivity() as OptionsFragmentInteractionListener
         else
-            throw RuntimeException("${getActivity().javaClass.getSimpleName()} must implement OptionsFragmentInteractionListener")
+            throw RuntimeException("${getActivity().javaClass.simpleName} must implement OptionsFragmentInteractionListener")
     }
 
     override fun onCreateView(inflater : LayoutInflater?, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
@@ -45,19 +43,19 @@ class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
     }
 
     override fun onViewCreated(view : View?, savedInstanceState : Bundle?) {
-        super<MvpFragment>.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
 
-        adapter = OptionsAdapter(getActivity(), object: OptionsAdapter.OptionsAdapterListener {
-            override fun onOptionItemSelected(position : Int) = interactionListener?.onOptionSelected(adapter.optionList.get(position))
+        adapter = OptionsAdapter(activity, object: OptionsAdapter.OptionsAdapterListener {
+            override fun onAlarmOptionItemSelected(position : Int) = interactionListener?.onAlarmOptionSelected(adapter.optionList.get(position))
         })
 
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(getActivity())
+        recyclerView.layoutManager = LinearLayoutManager(activity)
         presenter.getOptions()
     }
 
     override fun onDetach() {
-        super<MvpFragment>.onDetach()
+        super.onDetach()
         interactionListener = null
     }
 
@@ -66,6 +64,6 @@ class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
     }
 
     public interface OptionsFragmentInteractionListener {
-        fun onOptionSelected(option : Option)
+        fun onAlarmOptionSelected(option : Option)
     }
 }

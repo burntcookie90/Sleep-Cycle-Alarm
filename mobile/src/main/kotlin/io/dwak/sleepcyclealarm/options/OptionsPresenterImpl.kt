@@ -1,9 +1,9 @@
-package io.dwak.sleepycyclealarm.options
+package io.dwak.sleepcyclealarm.options
 
 import io.dwak.meh.base.AbstractPresenter
-import io.dwak.sleepycyclealarm.model.Option
-import io.dwak.sleepycyclealarm.presenter.OptionsPresenter
-import io.dwak.sleepycyclealarm.view.OptionsView
+import io.dwak.sleepcyclealarm.model.Option
+import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
+import io.dwak.sleepcyclealarm.view.OptionsView
 import java.util.ArrayList
 
 public class OptionsPresenterImpl : AbstractPresenter<OptionsView>(), OptionsPresenter {

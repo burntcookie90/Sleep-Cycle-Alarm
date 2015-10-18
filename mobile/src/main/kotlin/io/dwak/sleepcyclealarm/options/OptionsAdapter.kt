@@ -1,10 +1,9 @@
-package io.dwak.sleepycyclealarm.options
+package io.dwak.sleepcyclealarm.options
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import io.dwak.sleepycyclealarm
-import io.dwak.sleepycyclealarm.model.Option
+import io.dwak.sleepcyclealarm.model.Option
 import java.util.ArrayList
 
 public class OptionsAdapter(context : Context, listener : OptionsAdapter.OptionsAdapterListener) : RecyclerView.Adapter<OptionViewHolder>() {
@@ -31,6 +30,7 @@ public class OptionsAdapter(context : Context, listener : OptionsAdapter.Options
     override fun getItemCount() : Int = optionList.size()
 
     public interface OptionsAdapterListener{
-        fun onOptionItemSelected(position : Int)
+        fun onAlarmOptionItemSelected(position : Int): Unit?
     }
+
 }

@@ -28,8 +28,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.google.android.support:wearable:1.1.0'
-    compile 'com.google.android.gms:play-services-wearable:7.0.0'
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.11.91'
-    compile 'org.jetbrains.anko:anko:0.5-15s'
+    compile 'com.google.android.gms:play-services-wearable:8.1.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
 }

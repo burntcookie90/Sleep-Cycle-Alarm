@@ -1,4 +1,4 @@
-package io.dwak.sleepycyclealarm.options
+package io.dwak.sleepcyclealarm.options
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.bindView
 import io.dwak.sleepcyclealarm.R
-import io.dwak.sleepycyclealarm.model.Option
-import kotlinx.android.anko.onClick
-import kotlinx.android.anko.text
+import io.dwak.sleepcyclealarm.model.Option
 
 public class OptionViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView : View) {
     val name : TextView by bindView(R.id.option_name)
@@ -22,7 +20,7 @@ public class OptionViewHolder(itemView : View) : RecyclerView.ViewHolder(itemVie
 
         fun bind(viewHolder : OptionViewHolder?, option : Option, position : Int, optionsAdapterListener : OptionsAdapter.OptionsAdapterListener){
             viewHolder?.name?.text = option.description
-            viewHolder?.itemView?.onClick { optionsAdapterListener.onOptionItemSelected(position) }
+            viewHolder?.itemView?.setOnClickListener{ optionsAdapterListener.onAlarmOptionItemSelected(position) }
         }
     }
 }

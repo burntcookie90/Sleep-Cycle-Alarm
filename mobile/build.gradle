@@ -29,8 +29,7 @@ dependencies {
     wearApp project(':wear')
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibVersion"
-    compile 'com.google.android.gms:play-services:7.3.0'
-    compile 'org.jetbrains.anko:anko:0.5-15s'
+    compile 'com.google.android.gms:play-services:8.1.0'
     compile project(':mvp')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
 }

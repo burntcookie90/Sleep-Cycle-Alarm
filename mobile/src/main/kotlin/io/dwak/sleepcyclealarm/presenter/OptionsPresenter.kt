@@ -1,4 +1,4 @@
-package io.dwak.sleepycyclealarm.presenter
+package io.dwak.sleepcyclealarm.presenter
 
 public interface OptionsPresenter {
     fun getOptions()
