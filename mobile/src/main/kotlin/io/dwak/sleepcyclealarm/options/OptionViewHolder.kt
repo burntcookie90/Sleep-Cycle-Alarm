@@ -10,17 +10,22 @@ import butterknife.bindView
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.model.Option
 
-public class OptionViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView : View) {
+public class OptionViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val name : TextView by bindView(R.id.option_name)
 
     companion object {
-        fun create(context : Context, parent : ViewGroup?) : OptionViewHolder{
-            return OptionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_option, parent, false))
+        fun create(context : Context, parent : ViewGroup?) : OptionViewHolder {
+            return OptionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_option,
+                                                                         parent,
+                                                                         false))
         }
 
-        fun bind(viewHolder : OptionViewHolder?, option : Option, position : Int, optionsAdapterListener : OptionsAdapter.OptionsAdapterListener){
+        fun bind(viewHolder : OptionViewHolder?,
+                 option : Option,
+                 position : Int,
+                 callback : (Int) -> Unit?) {
             viewHolder?.name?.text = option.description
-            viewHolder?.itemView?.setOnClickListener{ optionsAdapterListener.onAlarmOptionItemSelected(position) }
+            viewHolder?.itemView?.setOnClickListener { callback.invoke(position) }
         }
     }
 }

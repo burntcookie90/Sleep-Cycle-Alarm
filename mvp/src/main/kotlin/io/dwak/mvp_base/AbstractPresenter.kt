@@ -1,4 +1,4 @@
-package io.dwak.meh.base
+package io.dwak.mvp_base
 
 import kotlin.properties.Delegates
 

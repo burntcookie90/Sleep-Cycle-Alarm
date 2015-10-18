@@ -24,7 +24,7 @@ class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
         public fun newInstance() : Fragment = OptionsFragment()
     }
 
-    override val presenterClass : Class<OptionsPresenterImpl> = javaClass()
+    override val presenterClass : Class<OptionsPresenterImpl> = OptionsPresenterImpl::class.java
 
     override fun setView() {
         presenter.view = this
@@ -32,23 +32,24 @@ class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
 
     override fun onAttach(activity : Activity?) {
         super.onAttach(activity)
-        if(getActivity() is OptionsFragmentInteractionListener)
+        if (getActivity() is OptionsFragmentInteractionListener)
             interactionListener = getActivity() as OptionsFragmentInteractionListener
         else
             throw RuntimeException("${getActivity().javaClass.simpleName} must implement OptionsFragmentInteractionListener")
     }
 
-    override fun onCreateView(inflater : LayoutInflater?, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
+    override fun onCreateView(inflater : LayoutInflater?,
+                              container : ViewGroup?,
+                              savedInstanceState : Bundle?) : View? {
         return inflater?.inflate(R.layout.fragment_options, container, false)
     }
 
     override fun onViewCreated(view : View?, savedInstanceState : Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = OptionsAdapter(activity, object: OptionsAdapter.OptionsAdapterListener {
-            override fun onAlarmOptionItemSelected(position : Int) = interactionListener?.onAlarmOptionSelected(adapter.optionList.get(position))
+        adapter = OptionsAdapter(activity, { i ->
+            interactionListener?.onAlarmOptionSelected(adapter.optionList.get(i))
         })
-
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
         presenter.getOptions()

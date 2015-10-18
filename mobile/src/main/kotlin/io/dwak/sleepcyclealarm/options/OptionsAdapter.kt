@@ -6,17 +6,12 @@ import android.view.ViewGroup
 import io.dwak.sleepcyclealarm.model.Option
 import java.util.ArrayList
 
-public class OptionsAdapter(context : Context, listener : OptionsAdapter.OptionsAdapterListener) : RecyclerView.Adapter<OptionViewHolder>() {
+public class OptionsAdapter(context : Context, onClick : (Int) -> Unit?) : RecyclerView.Adapter<OptionViewHolder>() {
     val optionList = ArrayList<Option>()
-    val context : Context
-    val listener : OptionsAdapterListener
+    private val context = context;
+    private val onClick = onClick
 
-    init {
-        this.context = context
-        this.listener = listener
-    }
-
-    public fun addOption(option : Option){
+    public fun addOption(option : Option) {
         optionList.add(option)
         notifyItemInserted(optionList.size())
     }
@@ -25,12 +20,11 @@ public class OptionsAdapter(context : Context, listener : OptionsAdapter.Options
             = OptionViewHolder.Companion.create(context, parent)
 
     override fun onBindViewHolder(holder : OptionViewHolder?, position : Int)
-            = OptionViewHolder.Companion.bind(holder, optionList.get(position), position, listener)
+            = OptionViewHolder.Companion.bind(viewHolder = holder,
+                                              option = optionList.get(position),
+                                              position = position,
+                                              callback = onClick)
 
     override fun getItemCount() : Int = optionList.size()
-
-    public interface OptionsAdapterListener{
-        fun onAlarmOptionItemSelected(position : Int): Unit?
-    }
 
 }

@@ -2,11 +2,9 @@ package io.dwak.mvp_base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import io.dwak.meh.base.AbstractPresenter
-import kotlin.properties.Delegates
 
 public abstract class MvpFragment<T : AbstractPresenter<*>> : Fragment() {
-    val presenter : T by Delegates.lazy {
+    val presenter : T by lazy() {
         presenterClass.newInstance()
     }
 
