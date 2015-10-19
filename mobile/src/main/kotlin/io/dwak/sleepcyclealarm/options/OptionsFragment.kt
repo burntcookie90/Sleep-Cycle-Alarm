@@ -47,7 +47,7 @@ class OptionsFragment : DataBindingMvpFragment<OptionsPresenterImpl, OptionsFrag
     override fun onCreateView(inflater : LayoutInflater?,
                               container : ViewGroup?,
                               savedInstanceState : Bundle?) : View? {
-        createViewBinding(inflater!!, R.layout.fragment_options, container!!)
+        createViewBinding(inflater, R.layout.fragment_options, container)
         viewBinding.sleepNowButton.setOnClickListener { onClick(it) }
         viewBinding.sleepLaterButton.setOnClickListener { onClick(it) }
         return viewBinding.root

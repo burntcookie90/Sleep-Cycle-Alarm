@@ -12,9 +12,9 @@ public abstract class DataBindingMvpFragment<T : AbstractPresenter<*>, V : ViewD
     lateinit var viewBinding : V
         get
 
-    protected fun createViewBinding(inflater : LayoutInflater,
+    protected fun createViewBinding(inflater : LayoutInflater?,
                                     @LayoutRes layoutResId : Int,
-                                    parent : ViewGroup) {
-        viewBinding = DataBindingUtil.inflate<V>(inflater, layoutResId, parent, false)
+                                    parent : ViewGroup?) {
+        viewBinding = DataBindingUtil.inflate<V>(inflater!!, layoutResId, parent!!, false)
     }
 }
