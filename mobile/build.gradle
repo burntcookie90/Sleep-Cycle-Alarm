@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.android.databinding'
 
 android {
     compileSdkVersion 23
@@ -25,11 +26,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':mvp')
     wearApp project(':wear')
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibVersion"
-    compile 'com.google.android.gms:play-services:8.1.0'
-    compile project(':mvp')
+    compile "com.android.support:percent:$rootProject.ext.supportLibVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
+    compile "com.google.android.gms:play-services-wearable:8.1.0"
+    kapt 'com.android.databinding:compiler:1.0-rc2'
+}
+
+kapt {
+    generateStubs = true
 }

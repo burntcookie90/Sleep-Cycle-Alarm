@@ -11,23 +11,29 @@ import android.view.ViewGroup
 import butterknife.bindView
 import io.dwak.mvp_base.MvpFragment
 import io.dwak.sleepcyclealarm.R
+import io.dwak.sleepcyclealarm.base.DataBindingMvpFragment
+import io.dwak.sleepcyclealarm.databinding.OptionsFragmentBinding
 import io.dwak.sleepcyclealarm.model.Option
 import io.dwak.sleepcyclealarm.view.OptionsView
 import kotlin.properties.Delegates
 
-class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
-    val recyclerView : RecyclerView by bindView(R.id.recycler_view)
-    var adapter : OptionsAdapter by Delegates.notNull()
-    var interactionListener : OptionsFragmentInteractionListener? = null
-
+class OptionsFragment : DataBindingMvpFragment<OptionsPresenterImpl, OptionsFragmentBinding>(), OptionsView {
     public companion object {
         public fun newInstance() : Fragment = OptionsFragment()
     }
 
+    var interactionListener : OptionsFragmentInteractionListener? = null
     override val presenterClass : Class<OptionsPresenterImpl> = OptionsPresenterImpl::class.java
 
     override fun setView() {
         presenter.view = this
+    }
+
+    fun onClick(view : View) {
+        when (view) {
+            viewBinding.sleepNowButton   -> presenter.sleepNowClicked()
+            viewBinding.sleepLaterButton -> presenter.sleepLaterClicked()
+        }
     }
 
     override fun onAttach(activity : Activity?) {
@@ -41,18 +47,10 @@ class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
     override fun onCreateView(inflater : LayoutInflater?,
                               container : ViewGroup?,
                               savedInstanceState : Bundle?) : View? {
-        return inflater?.inflate(R.layout.fragment_options, container, false)
-    }
-
-    override fun onViewCreated(view : View?, savedInstanceState : Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        adapter = OptionsAdapter(activity, { i ->
-            interactionListener?.onAlarmOptionSelected(adapter.optionList.get(i))
-        })
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        presenter.getOptions()
+        createViewBinding(inflater!!, R.layout.fragment_options, container!!)
+        viewBinding.sleepNowButton.setOnClickListener { onClick(it) }
+        viewBinding.sleepLaterButton.setOnClickListener { onClick(it) }
+        return viewBinding.root
     }
 
     override fun onDetach() {
@@ -60,11 +58,18 @@ class OptionsFragment : MvpFragment<OptionsPresenterImpl>(), OptionsView {
         interactionListener = null
     }
 
-    override fun showOptions(options : List<Option>) {
-        options.forEach { adapter.addOption(it) }
+    override fun navigateToSleepNow() {
+        interactionListener?.navigateToSleepTimes(true)
+    }
+
+    override fun navigateToSleepLater() {
+        interactionListener?.navigateToSleepLater()
     }
 
     public interface OptionsFragmentInteractionListener {
-        fun onAlarmOptionSelected(option : Option)
+        fun navigateToSleepTimes(sleepNow : Boolean)
+
+        fun navigateToSleepLater()
     }
+
 }

@@ -6,8 +6,12 @@ import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 
 public class OptionsPresenterImpl : AbstractPresenter<OptionsView>(), OptionsPresenter {
-
-    override fun getOptions() {
-        view.showOptions(arrayListOf(Option.NOW, Option.WAKE_UP_AT));
+    override fun sleepLaterClicked() {
+        view.navigateToSleepLater()
     }
+
+    override fun sleepNowClicked() {
+        view.navigateToSleepNow()
+    }
+
 }

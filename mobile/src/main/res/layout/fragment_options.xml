@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/recycler_view"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <data class = "OptionsFragmentBinding"/>
 
-</android.support.v7.widget.RecyclerView>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/sleep_now_button"
+            android:text="Sleep Now"
+            android:gravity="center"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="50%" />
+
+        <Button
+            android:id="@+id/sleep_later_button"
+            android:layout_below="@id/sleep_now_button"
+            android:text="Sleep Later"
+            android:gravity="center"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="50%" />
+    </android.support.percent.PercentRelativeLayout>
+</layout>
