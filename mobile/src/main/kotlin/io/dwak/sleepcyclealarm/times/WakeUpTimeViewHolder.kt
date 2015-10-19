@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.base.DataBindingViewHolder
 import io.dwak.sleepcyclealarm.databinding.WakeUpTimeItemBinding
+import io.dwak.sleepcyclealarm.model.WakeUpTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,9 +23,10 @@ class WakeUpTimeViewHolder(viewDataBinding : WakeUpTimeItemBinding)
     }
 
     fun bind(sleepTime : Date,
-             wakeupTime : Date,
+             wakeupTime : WakeUpTime,
              callBack : (Date) -> Unit) {
-        viewDataBinding?.timeText?.text = timeFormat.format(wakeupTime)
-        viewDataBinding?.root?.setOnClickListener { callBack.invoke(wakeupTime) }
+        viewDataBinding?.timeText?.text = timeFormat.format(wakeupTime.time)
+        viewDataBinding?.subtitle?.text = "${wakeupTime.cycles} ${wakeupTime.subtitle}"
+        viewDataBinding?.root?.setOnClickListener { callBack.invoke(wakeupTime.time) }
     }
 }

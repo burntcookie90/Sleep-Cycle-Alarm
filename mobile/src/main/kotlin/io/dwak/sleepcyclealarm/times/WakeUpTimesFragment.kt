@@ -12,6 +12,7 @@ import io.dwak.mvp_base.MvpFragment
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.base.DataBindingMvpFragment
 import io.dwak.sleepcyclealarm.databinding.SleepTimesFragmentBinding
+import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import java.util.*
 
@@ -86,7 +87,7 @@ class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenterImpl,
     }
 
     override fun showTimes(sleepTime : Date,
-                           wakeupTimes : ArrayList<Date>) {
+                           wakeupTimes : ArrayList<WakeUpTime>) {
         adapter.sleepTime = sleepTime
         wakeupTimes.forEach { adapter.addTime(it) }
     }

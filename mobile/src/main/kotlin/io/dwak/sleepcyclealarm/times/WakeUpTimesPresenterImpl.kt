@@ -1,13 +1,14 @@
 package io.dwak.sleepcyclealarm.times
 
 import io.dwak.mvp_base.AbstractPresenter
+import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import java.util.*
 
 class WakeUpTimesPresenterImpl : AbstractPresenter<WakeUpTimesView>(), WakeUpTimesPresenter {
     lateinit var sleepTime : Date
-    var wakeupTimeList : ArrayList<Date>? = null
+    var wakeupTimeList : ArrayList<WakeUpTime>? = null
     val numberOfWakeUpTimes = 7
     var isSleepNow : Boolean? = false
         set(value) {
@@ -23,12 +24,12 @@ class WakeUpTimesPresenterImpl : AbstractPresenter<WakeUpTimesView>(), WakeUpTim
                 val sleepTime = Calendar.getInstance()
                 sleepTime.time = this.sleepTime
                 sleepTime.add(Calendar.MINUTE, 14)
-                wakeupTimeList = ArrayList<Date>(numberOfWakeUpTimes)
+                wakeupTimeList = ArrayList<WakeUpTime>(numberOfWakeUpTimes)
 
                 for (i in 0..numberOfWakeUpTimes - 1) {
                     sleepTime.add(Calendar.HOUR, 1)
                     sleepTime.add(Calendar.MINUTE, 30)
-                    wakeupTimeList?.add(sleepTime.time)
+                    wakeupTimeList?.add(WakeUpTime(i + 1, "blah", sleepTime.time))
                 }
                 view.showTimes(this.sleepTime, wakeupTimeList!!)
             }
