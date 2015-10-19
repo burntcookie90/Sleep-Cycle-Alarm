@@ -8,7 +8,7 @@ import java.util.*
 class WakeUpTimesPresenterImpl : AbstractPresenter<WakeUpTimesView>(), WakeUpTimesPresenter {
     lateinit var sleepTime : Date
     var wakeupTimeList : ArrayList<Date>? = null
-    val numberOfWakeUpTimes = 5
+    val numberOfWakeUpTimes = 7
     var isSleepNow : Boolean? = false
         set(value) {
             field = value
@@ -18,21 +18,25 @@ class WakeUpTimesPresenterImpl : AbstractPresenter<WakeUpTimesView>(), WakeUpTim
         }
 
     override fun getTimes() {
-        if(wakeupTimeList != null){
-            return
+        when (wakeupTimeList) {
+            null -> {
+                val sleepTime = Calendar.getInstance()
+                sleepTime.time = this.sleepTime
+                sleepTime.add(Calendar.MINUTE, 14)
+                wakeupTimeList = ArrayList<Date>(numberOfWakeUpTimes)
+
+                for (i in 0..numberOfWakeUpTimes - 1) {
+                    sleepTime.add(Calendar.HOUR, 1)
+                    sleepTime.add(Calendar.MINUTE, 30)
+                    wakeupTimeList?.add(sleepTime.time)
+                }
+                view.showTimes(this.sleepTime, wakeupTimeList!!)
+            }
+            else -> {
+                return
+            }
         }
 
-        val sleepTime = Calendar.getInstance()
-        sleepTime.time = this.sleepTime
-        sleepTime.add(Calendar.MINUTE, 14)
-        wakeupTimeList = ArrayList<Date>(numberOfWakeUpTimes)
-
-        for (i in 0..numberOfWakeUpTimes - 1) {
-            sleepTime.add(Calendar.HOUR, 1)
-            sleepTime.add(Calendar.MINUTE, 30)
-            wakeupTimeList?.add(sleepTime.time)
-        }
-        view.showTimes(this.sleepTime, wakeupTimeList!!)
     }
 
     override fun wakeUpTimeSelected(selectedWakeUpTime : Date) {

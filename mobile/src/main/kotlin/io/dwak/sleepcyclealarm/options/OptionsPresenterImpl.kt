@@ -1,7 +1,6 @@
 package io.dwak.sleepcyclealarm.options
 
 import io.dwak.mvp_base.AbstractPresenter
-import io.dwak.sleepcyclealarm.model.Option
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 
@@ -13,5 +12,4 @@ public class OptionsPresenterImpl : AbstractPresenter<OptionsView>(), OptionsPre
     override fun sleepNowClicked() {
         view.navigateToSleepNow()
     }
-
 }

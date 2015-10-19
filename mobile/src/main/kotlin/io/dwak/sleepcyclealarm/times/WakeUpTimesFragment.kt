@@ -15,7 +15,9 @@ import io.dwak.sleepcyclealarm.databinding.SleepTimesFragmentBinding
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import java.util.*
 
-class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenterImpl, SleepTimesFragmentBinding>(), WakeUpTimesView {
+class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenterImpl,
+        SleepTimesFragmentBinding>(), WakeUpTimesView {
+
     lateinit var adapter : WakeUpTimesAdapter
     var listener : WakeUpTimesFragmentListener? = null
 

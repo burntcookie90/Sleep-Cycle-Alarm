@@ -3,19 +3,13 @@ package io.dwak.sleepcyclealarm.options
 import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.bindView
-import io.dwak.mvp_base.MvpFragment
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.base.DataBindingMvpFragment
 import io.dwak.sleepcyclealarm.databinding.OptionsFragmentBinding
-import io.dwak.sleepcyclealarm.model.Option
 import io.dwak.sleepcyclealarm.view.OptionsView
-import kotlin.properties.Delegates
 
 class OptionsFragment : DataBindingMvpFragment<OptionsPresenterImpl, OptionsFragmentBinding>(), OptionsView {
     public companion object {
@@ -38,8 +32,8 @@ class OptionsFragment : DataBindingMvpFragment<OptionsPresenterImpl, OptionsFrag
 
     override fun onAttach(activity : Activity?) {
         super.onAttach(activity)
-        if (getActivity() is OptionsFragmentInteractionListener)
-            interactionListener = getActivity() as OptionsFragmentInteractionListener
+        if (activity is OptionsFragmentInteractionListener)
+            interactionListener = activity
         else
             throw RuntimeException("${getActivity().javaClass.simpleName} must implement OptionsFragmentInteractionListener")
     }
