@@ -8,21 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.bindView
+import com.jakewharton.rxbinding.view.clicks
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
 import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
+import rx.Observable
 
 @ViewScope
 public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
-    val sleepNowButton : TextView by bindView(R.id.sleep_now_button)
-    val sleepLaterButton : TextView by bindView(R.id.sleep_later_button)
-
     public companion object {
         public fun newInstance() : Fragment = OptionsFragment()
     }
+
+    val sleepNowButton : TextView by bindView(R.id.sleep_now_button)
+    val sleepLaterButton : TextView by bindView(R.id.sleep_later_button)
+    override val sleepNowClicks : Observable<Unit> get() = sleepNowButton.clicks()
+    override val sleepLaterClicks : Observable<Unit> get() = sleepLaterButton.clicks()
 
     var interactionListener : OptionsFragmentInteractionListener? = null
 
@@ -32,12 +36,6 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
                 .inject(this)
     }
 
-    fun onClick(view : View) {
-        when (view) {
-            sleepNowButton   -> presenter.sleepNowClicked()
-            sleepLaterButton -> presenter.sleepLaterClicked()
-        }
-    }
 
     override fun onAttach(activity : Activity?) {
         super.onAttach(activity)
@@ -51,12 +49,6 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
                               container : ViewGroup?,
                               savedInstanceState : Bundle?) : View? {
         return inflater?.inflate(R.layout.fragment_options, container, false);
-    }
-
-    override fun onStart() {
-        super.onStart()
-        sleepNowButton.setOnClickListener { onClick(it) }
-        sleepLaterButton.setOnClickListener { onClick(it) }
     }
 
     override fun onDetach() {

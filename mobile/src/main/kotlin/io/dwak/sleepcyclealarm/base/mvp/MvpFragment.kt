@@ -16,5 +16,17 @@ public abstract class MvpFragment<T : Presenter> : Fragment(), DaggerPresenterVi
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         inject()
+
+        presenter.prepareToAttachToView()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.onAttachToView()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.onDetachFromView()
     }
 }

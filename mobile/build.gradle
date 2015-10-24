@@ -33,9 +33,12 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibVersion"
     compile "com.android.support:percent:$rootProject.ext.supportLibVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
-    compile "com.google.android.gms:play-services-wearable:8.1.0"
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rootProject.ext.rxbindingVersion"
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile "com.google.android.gms:play-services-wearable:8.1.0"
     kapt 'com.android.databinding:compiler:1.0-rc4'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'
