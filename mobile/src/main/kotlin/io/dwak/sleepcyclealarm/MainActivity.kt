@@ -1,13 +1,11 @@
 package io.dwak.sleepcyclealarm
 
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.provider.AlarmClock
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import butterknife.bindView
-import io.dwak.sleepcyclealarm.databinding.MainActivityBinding
 import io.dwak.sleepcyclealarm.extension.fromDate
 import io.dwak.sleepcyclealarm.extension.getHour
 import io.dwak.sleepcyclealarm.extension.getMinute
@@ -15,7 +13,8 @@ import io.dwak.sleepcyclealarm.extension.navigateTo
 import io.dwak.sleepcyclealarm.extension.toast
 import io.dwak.sleepcyclealarm.options.OptionsFragment
 import io.dwak.sleepcyclealarm.times.WakeUpTimesFragment
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 public class MainActivity : AppCompatActivity(), OptionsFragment.OptionsFragmentInteractionListener,
                             WakeUpTimesFragment.WakeUpTimesFragmentListener {

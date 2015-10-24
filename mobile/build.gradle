@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.android.databinding'
 
 android {
     compileSdkVersion 23
@@ -38,7 +37,6 @@ dependencies {
     compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rootProject.ext.rxbindingVersion"
     compile 'io.reactivex:rxjava:1.0.14'
     compile "com.google.android.gms:play-services-wearable:8.1.0"
-    kapt 'com.android.databinding:compiler:1.0-rc4'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'
 }
