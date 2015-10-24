@@ -15,11 +15,12 @@ import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
+import rx.Observable
 import java.util.*
 
 @ViewScope
 public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTimesView {
-
+    override var itemClicks : Observable<Date>? = null
     val recycler : RecyclerView by bindView(R.id.recycler)
     lateinit var adapter : WakeUpTimesAdapter
     var listener : WakeUpTimesFragmentListener? = null
@@ -53,6 +54,7 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
                 .inject(this)
     }
 
+    //region lifecycle
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments?.containsKey(EXTRA_SLEEP_NOW)!!) {
@@ -81,11 +83,13 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
 
     override fun onStart() {
         super.onStart()
-        adapter = WakeUpTimesAdapter(activity, { presenter.wakeUpTimeSelected(it) })
+        adapter = WakeUpTimesAdapter(activity)
+        itemClicks = adapter.observable
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(activity)
         presenter.getTimes()
     }
+    //endregion
 
     override fun showTimes(sleepTime : Date,
                            wakeupTimes : ArrayList<WakeUpTime>) {

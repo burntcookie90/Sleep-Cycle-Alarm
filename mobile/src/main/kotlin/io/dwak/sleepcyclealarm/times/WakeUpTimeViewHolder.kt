@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.bindView
+import com.jakewharton.rxbinding.view.clicks
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.model.WakeUpTime
+import rx.Observable
+import rx.subjects.PublishSubject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,9 +30,9 @@ class WakeUpTimeViewHolder(val view : View) : RecyclerView.ViewHolder(view){
 
     fun bind(sleepTime : Date,
              wakeupTime : WakeUpTime,
-             callBack : (Date) -> Unit) {
+             callBack : PublishSubject<Date>) {
         timeText.text = timeFormat.format(wakeupTime.time)
         subtitle.text = "${wakeupTime.cycles} ${wakeupTime.subtitle}"
-        itemView.setOnClickListener { callBack.invoke(wakeupTime.time) }
+        itemView.clicks().subscribe { callBack.onNext(wakeupTime.time) }
     }
 }

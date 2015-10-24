@@ -36,7 +36,6 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
                 .inject(this)
     }
 
-
     override fun onAttach(activity : Activity?) {
         super.onAttach(activity)
         if (activity is OptionsFragmentInteractionListener)

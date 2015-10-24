@@ -4,9 +4,11 @@ import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
+import rx.Subscription
 import java.util.*
 
-class WakeUpTimesPresenterImpl(view : WakeUpTimesView) : AbstractPresenter<WakeUpTimesView>(view), WakeUpTimesPresenter {
+class WakeUpTimesPresenterImpl(view : WakeUpTimesView) : AbstractPresenter<WakeUpTimesView>(view),
+                                                         WakeUpTimesPresenter {
     lateinit override var sleepTime : Date
     var wakeupTimeList : ArrayList<WakeUpTime>? = null
     val numberOfWakeUpTimes = 7
@@ -17,6 +19,11 @@ class WakeUpTimesPresenterImpl(view : WakeUpTimesView) : AbstractPresenter<WakeU
                 sleepTime = Calendar.getInstance().time
             }
         }
+
+    override fun onAttachToView() {
+        super.onAttachToView()
+        subscriptions.add(view.itemClicks?.subscribe { wakeUpTimeSelected(it) })
+    }
 
     override fun getTimes() {
         when (wakeupTimeList) {
