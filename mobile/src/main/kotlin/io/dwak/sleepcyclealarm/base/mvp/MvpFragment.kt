@@ -20,8 +20,8 @@ public abstract class MvpFragment<T : Presenter> : Fragment(), DaggerPresenterVi
         presenter.prepareToAttachToView()
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         presenter.onAttachToView()
     }
 

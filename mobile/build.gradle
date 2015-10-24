@@ -27,7 +27,6 @@ android {
 }
 
 dependencies {
-    compile project(':mvp')
     wearApp project(':wear')
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibVersion"
