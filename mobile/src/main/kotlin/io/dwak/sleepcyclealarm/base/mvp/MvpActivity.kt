@@ -1,15 +1,14 @@
-package io.dwak.mvp_base
+package io.dwak.sleepcyclealarm.base.mvp
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import io.dwak.mvp_base.AbstractPresenter
+import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
+import javax.inject.Inject
 
 public abstract class MvpActivity<T : AbstractPresenter<*>> : AppCompatActivity() {
-    val presenter : T by lazy{
-        presenterClass.newInstance()
-    }
+    protected lateinit var presenter : T
+        @Inject set
 
-    abstract val presenterClass : Class<T>
     abstract fun setView()
 
     override fun onCreate(savedInstanceState : Bundle?) {

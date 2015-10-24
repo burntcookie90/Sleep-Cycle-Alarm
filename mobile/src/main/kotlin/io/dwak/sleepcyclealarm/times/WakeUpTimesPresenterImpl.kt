@@ -1,16 +1,16 @@
 package io.dwak.sleepcyclealarm.times
 
-import io.dwak.mvp_base.AbstractPresenter
+import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import java.util.*
 
 class WakeUpTimesPresenterImpl : AbstractPresenter<WakeUpTimesView>(), WakeUpTimesPresenter {
-    lateinit var sleepTime : Date
+    lateinit override var sleepTime : Date
     var wakeupTimeList : ArrayList<WakeUpTime>? = null
     val numberOfWakeUpTimes = 7
-    var isSleepNow : Boolean? = false
+    override var isSleepNow : Boolean? = false
         set(value) {
             field = value
             if (isSleepNow!!) {

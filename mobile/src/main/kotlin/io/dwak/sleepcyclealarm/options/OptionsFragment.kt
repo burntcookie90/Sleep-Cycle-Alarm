@@ -7,20 +7,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.dwak.sleepcyclealarm.R
-import io.dwak.sleepcyclealarm.base.DataBindingMvpFragment
+import io.dwak.sleepcyclealarm.base.databinding.DataBindingMvpFragment
+import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
+import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
 import io.dwak.sleepcyclealarm.databinding.OptionsFragmentBinding
+import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 
-class OptionsFragment : DataBindingMvpFragment<OptionsPresenterImpl, OptionsFragmentBinding>(), OptionsView {
+@ViewScope
+class OptionsFragment : DataBindingMvpFragment<OptionsPresenter, OptionsFragmentBinding>(), OptionsView {
     public companion object {
         public fun newInstance() : Fragment = OptionsFragment()
     }
 
     var interactionListener : OptionsFragmentInteractionListener? = null
-    override val presenterClass : Class<OptionsPresenterImpl> = OptionsPresenterImpl::class.java
 
     override fun setView() {
-        presenter.view = this
+//        presenter.view = this
+    }
+
+    override fun inject() {
+        presenterComponentBuilder.presenterModule(PresenterModule())
+        .build()
+        .inject(this)
     }
 
     fun onClick(view : View) {

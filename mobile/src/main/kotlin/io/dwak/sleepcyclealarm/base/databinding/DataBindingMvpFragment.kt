@@ -1,15 +1,17 @@
-package io.dwak.sleepcyclealarm.base
+package io.dwak.sleepcyclealarm.base.databinding
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import io.dwak.mvp_base.AbstractPresenter
-import io.dwak.mvp_base.MvpFragment
+import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
+import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
+import io.dwak.sleepcyclealarm.base.mvp.Presenter
 
-public abstract class DataBindingMvpFragment<T : AbstractPresenter<*>, V : ViewDataBinding> : MvpFragment<T>() {
-    lateinit var viewBinding : V
+@ViewScope
+public abstract class DataBindingMvpFragment<T : Presenter, V : ViewDataBinding> : MvpFragment<T>() {
+    protected lateinit var viewBinding : V
         get
 
     protected fun createViewBinding(inflater : LayoutInflater?,

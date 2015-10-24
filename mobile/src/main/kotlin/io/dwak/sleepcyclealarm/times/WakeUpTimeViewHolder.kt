@@ -3,7 +3,7 @@ package io.dwak.sleepcyclealarm.times
 import android.content.Context
 import android.view.ViewGroup
 import io.dwak.sleepcyclealarm.R
-import io.dwak.sleepcyclealarm.base.DataBindingViewHolder
+import io.dwak.sleepcyclealarm.base.databinding.DataBindingViewHolder
 import io.dwak.sleepcyclealarm.databinding.WakeUpTimeItemBinding
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import java.text.SimpleDateFormat

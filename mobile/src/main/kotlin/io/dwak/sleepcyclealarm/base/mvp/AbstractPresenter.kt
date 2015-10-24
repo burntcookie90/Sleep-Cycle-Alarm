@@ -1,4 +1,4 @@
-package io.dwak.mvp_base
+package io.dwak.sleepcyclealarm.base.mvp
 
 import kotlin.properties.Delegates
 

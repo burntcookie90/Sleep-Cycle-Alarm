@@ -1,4 +1,4 @@
-package io.dwak.sleepcyclealarm.base
+package io.dwak.sleepcyclealarm.base.databinding
 
 import android.content.Context
 import android.databinding.DataBindingUtil

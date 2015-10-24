@@ -2,6 +2,7 @@
 ext {
     supportLibVersion = '23.1.0'
     kotlin_version = '1.0.0-beta-1038'
+    daggerVersion = '2.0.1'
 }
 
 buildscript {

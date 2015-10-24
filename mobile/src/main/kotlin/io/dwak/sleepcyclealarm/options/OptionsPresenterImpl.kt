@@ -1,6 +1,6 @@
 package io.dwak.sleepcyclealarm.options
 
-import io.dwak.mvp_base.AbstractPresenter
+import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 

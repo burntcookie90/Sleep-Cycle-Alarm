@@ -8,15 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import io.dwak.mvp_base.MvpFragment
+import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
 import io.dwak.sleepcyclealarm.R
-import io.dwak.sleepcyclealarm.base.DataBindingMvpFragment
+import io.dwak.sleepcyclealarm.base.databinding.DataBindingMvpFragment
+import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
+import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
 import io.dwak.sleepcyclealarm.databinding.SleepTimesFragmentBinding
 import io.dwak.sleepcyclealarm.model.WakeUpTime
+import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import java.util.*
 
-class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenterImpl,
+@ViewScope
+class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenter,
         SleepTimesFragmentBinding>(), WakeUpTimesView {
 
     lateinit var adapter : WakeUpTimesAdapter
@@ -45,10 +49,14 @@ class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenterImpl,
         }
     }
 
-    override val presenterClass = WakeUpTimesPresenterImpl::class.java
+    override fun inject() {
+        presenterComponentBuilder.presenterModule(PresenterModule())
+                .build()
+                .inject(this)
+    }
 
     override fun setView() {
-        presenter.view = this
+//        presenter.view = this
     }
 
     override fun onCreate(savedInstanceState : Bundle?) {

@@ -34,7 +34,10 @@ dependencies {
     compile "com.android.support:percent:$rootProject.ext.supportLibVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
     compile "com.google.android.gms:play-services-wearable:8.1.0"
+    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
     kapt 'com.android.databinding:compiler:1.0-rc2'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'
 }
 
