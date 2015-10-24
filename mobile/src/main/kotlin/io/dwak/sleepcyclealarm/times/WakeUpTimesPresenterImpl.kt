@@ -33,13 +33,13 @@ class WakeUpTimesPresenterImpl(view : WakeUpTimesView) : AbstractPresenter<WakeU
         when (wakeupTimeList) {
             null -> {
                 val sleepTime = Calendar.getInstance().fromDate(this.sleepTime)
-                sleepTime.minute+=14
+                sleepTime.minute += 14
                 wakeupTimeList = ArrayList<WakeUpTime>(numberOfWakeUpTimes)
 
                 for (i in 0..numberOfWakeUpTimes - 1) {
-                    with(sleepTime){
-                        hour+=1
-                        minute+=30
+                    with(sleepTime) {
+                        hour += 1
+                        minute += 30
                     }
                     wakeupTimeList?.add(WakeUpTime(i + 1, "blah", sleepTime.time))
                 }
