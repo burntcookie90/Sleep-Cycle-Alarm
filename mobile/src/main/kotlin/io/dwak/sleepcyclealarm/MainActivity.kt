@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import butterknife.bindView
 import io.dwak.sleepcyclealarm.databinding.MainActivityBinding
+import io.dwak.sleepcyclealarm.extension.fromDate
+import io.dwak.sleepcyclealarm.extension.getHour
+import io.dwak.sleepcyclealarm.extension.getMinute
 import io.dwak.sleepcyclealarm.extension.navigateTo
 import io.dwak.sleepcyclealarm.extension.toast
 import io.dwak.sleepcyclealarm.options.OptionsFragment
@@ -34,12 +37,11 @@ public class MainActivity : AppCompatActivity(), OptionsFragment.OptionsFragment
     }
 
     override fun setAlarm(wakeUpTime : Date) {
-        val calendar = Calendar.getInstance()
-        calendar.time = wakeUpTime
+        val calendar = Calendar.getInstance().fromDate(wakeUpTime)
         val alarmIntent = Intent(AlarmClock.ACTION_SET_ALARM)
         alarmIntent.putExtra(AlarmClock.EXTRA_MESSAGE, "");
-        alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, calendar.get(Calendar.HOUR));
-        alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, calendar.get(Calendar.MINUTE));
+        alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, calendar.getHour());
+        alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, calendar.getMinute());
         startActivity(alarmIntent);
     }
 }

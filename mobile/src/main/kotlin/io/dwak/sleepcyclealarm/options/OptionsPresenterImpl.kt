@@ -10,11 +10,13 @@ public class OptionsPresenterImpl(view : OptionsView) : AbstractPresenter<Option
 
     override fun onAttachToView() {
         super.onAttachToView()
-        subscriptions.add(view.sleepLaterClicks
-                                  ?.debounce(250, TimeUnit.MILLISECONDS)
-                                  ?.subscribe { view.navigateToSleepLater() })
-        subscriptions.add(view.sleepNowClicks
-                                  ?.debounce(250, TimeUnit.MILLISECONDS)
-                                  ?.subscribe { view.navigateToSleepNow() })
+        with(subscriptions) {
+            add(view.sleepLaterClicks
+                        ?.debounce(250, TimeUnit.MILLISECONDS)
+                        ?.subscribe { view.navigateToSleepLater() })
+            add(view.sleepNowClicks
+                        ?.debounce(250, TimeUnit.MILLISECONDS)
+                        ?.subscribe { view.navigateToSleepNow() })
+        }
     }
 }
