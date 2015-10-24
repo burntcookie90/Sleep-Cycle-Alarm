@@ -15,7 +15,7 @@ import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 
 @ViewScope
-class OptionsFragment : DataBindingMvpFragment<OptionsPresenter, OptionsFragmentBinding>(), OptionsView {
+public class OptionsFragment : DataBindingMvpFragment<OptionsPresenter, OptionsFragmentBinding>(), OptionsView {
     public companion object {
         public fun newInstance() : Fragment = OptionsFragment()
     }

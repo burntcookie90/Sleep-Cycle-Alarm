@@ -3,12 +3,9 @@ package io.dwak.sleepcyclealarm.times
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.base.databinding.DataBindingMvpFragment
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
@@ -20,7 +17,7 @@ import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import java.util.*
 
 @ViewScope
-class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenter,
+public class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenter,
         SleepTimesFragmentBinding>(), WakeUpTimesView {
 
     lateinit var adapter : WakeUpTimesAdapter

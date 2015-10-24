@@ -8,14 +8,14 @@ import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.times.WakeUpTimesPresenterImpl
 
 @Module
-class PresenterModule {
+public class PresenterModule {
     @Provides
     fun providesWakeUpTimePresenter() : WakeUpTimesPresenter {
         return WakeUpTimesPresenterImpl()
     }
 
     @Provides
-    fun providesOptionsPresenter(presenter : OptionsPresenterImpl) : OptionsPresenter {
-        return presenter
+    fun providesOptionsPresenter() : OptionsPresenter {
+        return OptionsPresenterImpl()
     }
 }
