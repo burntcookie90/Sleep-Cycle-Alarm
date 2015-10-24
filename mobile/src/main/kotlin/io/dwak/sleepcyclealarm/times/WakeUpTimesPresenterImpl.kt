@@ -6,7 +6,7 @@ import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import java.util.*
 
-class WakeUpTimesPresenterImpl : AbstractPresenter<WakeUpTimesView>(), WakeUpTimesPresenter {
+class WakeUpTimesPresenterImpl(view : WakeUpTimesView) : AbstractPresenter<WakeUpTimesView>(view), WakeUpTimesPresenter {
     lateinit override var sleepTime : Date
     var wakeupTimeList : ArrayList<WakeUpTime>? = null
     val numberOfWakeUpTimes = 7

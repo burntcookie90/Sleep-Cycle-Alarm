@@ -7,6 +7,7 @@ import java.util.*
 public interface WakeUpTimesPresenter : Presenter {
     var isSleepNow : Boolean?
     var sleepTime : Date
+
     fun getTimes()
 
     fun wakeUpTimeSelected(selectedWakeUpTime : Date)

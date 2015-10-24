@@ -9,7 +9,7 @@ import io.dwak.sleepcyclealarm.times.WakeUpTimesFragment
 @ViewScope
 @Component(modules = arrayOf(PresenterModule::class))
 public interface PresenterComponent {
-    fun inject(view : OptionsFragment)
+    public fun inject(view : OptionsFragment)
 
-    fun inject(view : WakeUpTimesFragment)
+    public fun inject(view : WakeUpTimesFragment)
 }

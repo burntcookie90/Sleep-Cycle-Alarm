@@ -3,23 +3,24 @@ package io.dwak.sleepcyclealarm.times
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import butterknife.bindView
 import io.dwak.sleepcyclealarm.R
-import io.dwak.sleepcyclealarm.base.databinding.DataBindingMvpFragment
+import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
 import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
-import io.dwak.sleepcyclealarm.databinding.SleepTimesFragmentBinding
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import java.util.*
 
 @ViewScope
-public class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenter,
-        SleepTimesFragmentBinding>(), WakeUpTimesView {
+public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTimesView {
 
+    val recycler : RecyclerView by bindView(R.id.recycler)
     lateinit var adapter : WakeUpTimesAdapter
     var listener : WakeUpTimesFragmentListener? = null
 
@@ -47,13 +48,9 @@ public class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenter,
     }
 
     override fun inject() {
-        presenterComponentBuilder.presenterModule(PresenterModule())
+        presenterComponentBuilder.presenterModule(PresenterModule(this))
                 .build()
                 .inject(this)
-    }
-
-    override fun setView() {
-//        presenter.view = this
     }
 
     override fun onCreate(savedInstanceState : Bundle?) {
@@ -69,11 +66,7 @@ public class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenter,
     override fun onCreateView(inflater : LayoutInflater?,
                               container : ViewGroup?,
                               savedInstanceState : Bundle?) : View? {
-        createViewBinding(inflater, R.layout.fragment_sleep_times, container)
-        adapter = WakeUpTimesAdapter(activity, { presenter.wakeUpTimeSelected(it) })
-        viewBinding.recycler.adapter = adapter
-        viewBinding.recycler.layoutManager = LinearLayoutManager(activity)
-        return viewBinding.root
+        return inflater?.inflate(R.layout.fragment_sleep_times, container, false);
     }
 
     override fun onAttach(activity : Activity?) {
@@ -88,6 +81,9 @@ public class WakeUpTimesFragment : DataBindingMvpFragment<WakeUpTimesPresenter,
 
     override fun onStart() {
         super.onStart()
+        adapter = WakeUpTimesAdapter(activity, { presenter.wakeUpTimeSelected(it) })
+        recycler.adapter = adapter
+        recycler.layoutManager = LinearLayoutManager(activity)
         presenter.getTimes()
     }
 

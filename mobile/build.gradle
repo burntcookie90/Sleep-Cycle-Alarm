@@ -36,7 +36,7 @@ dependencies {
     compile "com.google.android.gms:play-services-wearable:8.1.0"
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
-    kapt 'com.android.databinding:compiler:1.0-rc2'
+    kapt 'com.android.databinding:compiler:1.0-rc4'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'
 }

@@ -6,36 +6,36 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import butterknife.bindView
 import io.dwak.sleepcyclealarm.R
-import io.dwak.sleepcyclealarm.base.databinding.DataBindingMvpFragment
+import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
 import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
-import io.dwak.sleepcyclealarm.databinding.OptionsFragmentBinding
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 
 @ViewScope
-public class OptionsFragment : DataBindingMvpFragment<OptionsPresenter, OptionsFragmentBinding>(), OptionsView {
+public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
+    val sleepNowButton : TextView by bindView(R.id.sleep_now_button)
+    val sleepLaterButton : TextView by bindView(R.id.sleep_later_button)
+
     public companion object {
         public fun newInstance() : Fragment = OptionsFragment()
     }
 
     var interactionListener : OptionsFragmentInteractionListener? = null
 
-    override fun setView() {
-//        presenter.view = this
-    }
-
     override fun inject() {
-        presenterComponentBuilder.presenterModule(PresenterModule())
-        .build()
-        .inject(this)
+        presenterComponentBuilder.presenterModule(PresenterModule(this))
+                .build()
+                .inject(this)
     }
 
     fun onClick(view : View) {
         when (view) {
-            viewBinding.sleepNowButton   -> presenter.sleepNowClicked()
-            viewBinding.sleepLaterButton -> presenter.sleepLaterClicked()
+            sleepNowButton   -> presenter.sleepNowClicked()
+            sleepLaterButton -> presenter.sleepLaterClicked()
         }
     }
 
@@ -50,10 +50,13 @@ public class OptionsFragment : DataBindingMvpFragment<OptionsPresenter, OptionsF
     override fun onCreateView(inflater : LayoutInflater?,
                               container : ViewGroup?,
                               savedInstanceState : Bundle?) : View? {
-        createViewBinding(inflater, R.layout.fragment_options, container)
-        viewBinding.sleepNowButton.setOnClickListener { onClick(it) }
-        viewBinding.sleepLaterButton.setOnClickListener { onClick(it) }
-        return viewBinding.root
+        return inflater?.inflate(R.layout.fragment_options, container, false);
+    }
+
+    override fun onStart() {
+        super.onStart()
+        sleepNowButton.setOnClickListener { onClick(it) }
+        sleepLaterButton.setOnClickListener { onClick(it) }
     }
 
     override fun onDetach() {

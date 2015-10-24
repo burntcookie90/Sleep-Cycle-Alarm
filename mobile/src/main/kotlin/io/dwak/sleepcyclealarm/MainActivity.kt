@@ -17,11 +17,12 @@ import java.util.*
 
 public class MainActivity : AppCompatActivity(), OptionsFragment.OptionsFragmentInteractionListener,
                             WakeUpTimesFragment.WakeUpTimesFragmentListener {
+    val toolbar : Toolbar by bindView(R.id.toolbar)
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding : MainActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        setSupportActionBar(binding.toolbar)
+        setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
         navigateTo(OptionsFragment.newInstance(), addToBackStack = false);
     }
 

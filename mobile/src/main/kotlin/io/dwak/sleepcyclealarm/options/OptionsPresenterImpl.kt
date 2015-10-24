@@ -4,7 +4,7 @@ import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 
-public class OptionsPresenterImpl : AbstractPresenter<OptionsView>(), OptionsPresenter {
+public class OptionsPresenterImpl(view : OptionsView) : AbstractPresenter<OptionsView>(view), OptionsPresenter {
     override fun sleepLaterClicked() {
         view.navigateToSleepLater()
     }
