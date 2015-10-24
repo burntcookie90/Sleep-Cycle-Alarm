@@ -9,6 +9,7 @@ import android.widget.TextView
 import butterknife.bindView
 import com.jakewharton.rxbinding.view.clicks
 import io.dwak.sleepcyclealarm.R
+import io.dwak.sleepcyclealarm.extension.debounceDefault
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import rx.Observable
 import rx.subjects.PublishSubject
@@ -33,6 +34,8 @@ class WakeUpTimeViewHolder(val view : View) : RecyclerView.ViewHolder(view){
              callBack : PublishSubject<Date>) {
         timeText.text = timeFormat.format(wakeupTime.time)
         subtitle.text = "${wakeupTime.cycles} ${wakeupTime.subtitle}"
-        itemView.clicks().subscribe { callBack.onNext(wakeupTime.time) }
+        itemView.clicks()
+                .debounceDefault()
+                .subscribe { callBack.onNext(wakeupTime.time) }
     }
 }

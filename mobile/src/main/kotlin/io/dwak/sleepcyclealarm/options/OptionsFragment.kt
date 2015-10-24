@@ -31,11 +31,13 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
     var interactionListener : OptionsFragmentInteractionListener? = null
 
     override fun inject() {
-        presenterComponentBuilder.presenterModule(PresenterModule(this))
+        presenterComponentBuilder
+                .presenterModule(PresenterModule(this))
                 .build()
                 .inject(this)
     }
 
+    //region lifecycle
     override fun onAttach(activity : Activity?) {
         super.onAttach(activity)
         if (activity is OptionsFragmentInteractionListener)
@@ -54,7 +56,9 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
         super.onDetach()
         interactionListener = null
     }
+    //endregion
 
+    //region view methods
     override fun navigateToSleepNow() {
         interactionListener?.navigateToSleepTimes(true)
     }
@@ -62,6 +66,7 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
     override fun navigateToSleepLater() {
         interactionListener?.navigateToSleepLater()
     }
+    //endregion
 
     public interface OptionsFragmentInteractionListener {
         fun navigateToSleepTimes(sleepNow : Boolean)
