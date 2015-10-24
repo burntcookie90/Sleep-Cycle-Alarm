@@ -5,15 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
 import javax.inject.Inject
 
-public abstract class MvpActivity<T : Presenter> : AppCompatActivity(), DaggerPresenterView {
+public abstract class MvpActivity<T : Presenter> : AppCompatActivity() {
     protected lateinit var presenter : T
-        @Inject set
-
-    abstract override fun inject()
+        set
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        inject()
 
         presenter.prepareToAttachToView()
     }
