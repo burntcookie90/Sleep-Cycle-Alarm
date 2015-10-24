@@ -9,7 +9,10 @@ public abstract class MvpActivity<T : Presenter> : AppCompatActivity(), DaggerPr
     protected lateinit var presenter : T
         @Inject set
 
+    abstract override fun inject()
+
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
+        inject()
     }
 }

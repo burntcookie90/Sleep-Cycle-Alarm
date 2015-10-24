@@ -30,7 +30,7 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
 
         fun newInstance() = WakeUpTimesFragment()
 
-        fun newInstance(sleepNow : Boolean = false) : WakeUpTimesFragment{
+        fun newInstance(sleepNow : Boolean = false) : WakeUpTimesFragment {
             val extras = Bundle()
             extras.putBoolean(EXTRA_SLEEP_NOW, sleepNow)
             val fragment = WakeUpTimesFragment()
@@ -38,7 +38,7 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
             return fragment
         }
 
-        fun newInstance(sleepLaterTime : Date) : WakeUpTimesFragment{
+        fun newInstance(sleepLaterTime : Date) : WakeUpTimesFragment {
             val extras = Bundle()
             extras.putSerializable(EXTRA_SLEEP_LATER_TIME, sleepLaterTime)
             val fragment = WakeUpTimesFragment()
@@ -71,8 +71,8 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
 
     override fun onAttach(activity : Activity?) {
         super.onAttach(activity)
-        if(activity is WakeUpTimesFragmentListener){
-            listener  = activity
+        if (activity is WakeUpTimesFragmentListener) {
+            listener = activity
         }
         else {
             throw RuntimeException("${getActivity().javaClass.simpleName} must implement WakeUpTimesListener")

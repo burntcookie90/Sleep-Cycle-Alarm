@@ -7,4 +7,6 @@ public interface DaggerPresenterView {
         get() {
             return DaggerPresenterComponent.builder()
         }
+
+    fun inject()
 }

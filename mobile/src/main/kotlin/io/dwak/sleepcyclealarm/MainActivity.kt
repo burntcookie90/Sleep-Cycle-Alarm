@@ -10,7 +10,6 @@ import butterknife.bindView
 import io.dwak.sleepcyclealarm.databinding.MainActivityBinding
 import io.dwak.sleepcyclealarm.extension.navigateTo
 import io.dwak.sleepcyclealarm.extension.toast
-import io.dwak.sleepcyclealarm.model.Option
 import io.dwak.sleepcyclealarm.options.OptionsFragment
 import io.dwak.sleepcyclealarm.times.WakeUpTimesFragment
 import java.util.*

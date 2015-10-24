@@ -11,7 +11,7 @@ class WakeUpTimesAdapter(val context : Context, val onClick : (Date) -> Unit)
     val items = ArrayList<WakeUpTime>()
     lateinit var sleepTime : Date
 
-    fun addTime(wakeUpTime: WakeUpTime){
+    fun addTime(wakeUpTime : WakeUpTime) {
         items.add(wakeUpTime)
         notifyItemInserted(itemCount)
     }

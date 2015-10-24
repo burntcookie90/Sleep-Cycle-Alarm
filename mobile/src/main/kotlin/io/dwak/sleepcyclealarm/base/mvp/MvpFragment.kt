@@ -11,7 +11,7 @@ public abstract class MvpFragment<T : Presenter> : Fragment(), DaggerPresenterVi
     protected lateinit var presenter : T
         @Inject set
 
-    abstract fun inject()
+    abstract override fun inject()
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
