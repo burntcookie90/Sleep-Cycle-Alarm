@@ -1,3 +1,10 @@
+machine:
+  java:
+      version: oraclejdk8
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    GRADLE_OPTS: -Xmx256m
+
 dependencies:
     pre:
         - echo y | android update sdk --no-ui --all --filter "android-23"
