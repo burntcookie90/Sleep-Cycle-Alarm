@@ -3,21 +3,21 @@ package io.dwak.sleepcyclealarm.extension
 import java.util.Calendar
 import java.util.Date
 
-public fun Calendar.getHour() : Int{
-    return get(Calendar.HOUR)
-}
+var Calendar.hour : Int
+    get() {
+        return get(Calendar.HOUR)
+    }
+    set(value) {
+        set(Calendar.HOUR, value)
+    }
 
-public fun Calendar.getMinute() : Int{
-    return get(Calendar.MINUTE)
-}
-
-public fun Calendar.addHours(hour : Int){
-    add(Calendar.HOUR, hour)
-}
-
-public fun Calendar.addMinutes(minute : Int){
-    add(Calendar.MINUTE, minute)
-}
+var Calendar.minute : Int
+    get() {
+        return get(Calendar.MINUTE)
+    }
+    set(value) {
+        set(Calendar.MINUTE, value)
+    }
 
 public fun Calendar.fromDate(date : Date) : Calendar {
     this.time = date

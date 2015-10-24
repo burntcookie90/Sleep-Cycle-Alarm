@@ -1,14 +1,15 @@
 package io.dwak.sleepcyclealarm.times
 
 import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
-import io.dwak.sleepcyclealarm.extension.addHours
-import io.dwak.sleepcyclealarm.extension.addMinutes
 import io.dwak.sleepcyclealarm.extension.fromDate
+import io.dwak.sleepcyclealarm.extension.hour
+import io.dwak.sleepcyclealarm.extension.minute
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
-import rx.Subscription
-import java.util.*
+import java.util.ArrayList
+import java.util.Calendar
+import java.util.Date
 
 class WakeUpTimesPresenterImpl(view : WakeUpTimesView) : AbstractPresenter<WakeUpTimesView>(view),
                                                          WakeUpTimesPresenter {
@@ -32,13 +33,13 @@ class WakeUpTimesPresenterImpl(view : WakeUpTimesView) : AbstractPresenter<WakeU
         when (wakeupTimeList) {
             null -> {
                 val sleepTime = Calendar.getInstance().fromDate(this.sleepTime)
-                sleepTime.addMinutes(14)
+                sleepTime.minute+=14
                 wakeupTimeList = ArrayList<WakeUpTime>(numberOfWakeUpTimes)
 
                 for (i in 0..numberOfWakeUpTimes - 1) {
                     with(sleepTime){
-                        addHours(1)
-                        addMinutes(30)
+                        hour+=1
+                        minute+=30
                     }
                     wakeupTimeList?.add(WakeUpTime(i + 1, "blah", sleepTime.time))
                 }

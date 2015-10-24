@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import butterknife.bindView
 import io.dwak.sleepcyclealarm.extension.fromDate
-import io.dwak.sleepcyclealarm.extension.getHour
-import io.dwak.sleepcyclealarm.extension.getMinute
+import io.dwak.sleepcyclealarm.extension.hour
+import io.dwak.sleepcyclealarm.extension.minute
 import io.dwak.sleepcyclealarm.extension.navigateTo
 import io.dwak.sleepcyclealarm.extension.toast
 import io.dwak.sleepcyclealarm.options.OptionsFragment
@@ -39,8 +39,8 @@ public class MainActivity : AppCompatActivity(), OptionsFragment.OptionsFragment
         val calendar = Calendar.getInstance().fromDate(wakeUpTime)
         val alarmIntent = Intent(AlarmClock.ACTION_SET_ALARM)
         alarmIntent.putExtra(AlarmClock.EXTRA_MESSAGE, "");
-        alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, calendar.getHour());
-        alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, calendar.getMinute());
+        alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, calendar.hour);
+        alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, calendar.minute);
         startActivity(alarmIntent);
     }
 }
