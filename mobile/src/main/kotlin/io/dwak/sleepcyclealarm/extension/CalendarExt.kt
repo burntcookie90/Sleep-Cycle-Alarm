@@ -88,26 +88,26 @@ var Calendar.year : Int
 
 public fun Calendar.fromDate(date : Date) : Calendar = apply { time = date }
 
-public fun Calendar.isSunday() : Boolean = dayOfWeek == Calendar.SUNDAY
-public fun Calendar.isMonday() : Boolean = dayOfWeek == Calendar.MONDAY
-public fun Calendar.isTuesday() : Boolean = dayOfWeek == Calendar.TUESDAY
-public fun Calendar.isWednesday() : Boolean = dayOfWeek == Calendar.WEDNESDAY
-public fun Calendar.isThursday() : Boolean = dayOfWeek == Calendar.THURSDAY
-public fun Calendar.isFriday() : Boolean = dayOfWeek == Calendar.FRIDAY
-public fun Calendar.isSaturday() : Boolean = dayOfWeek == Calendar.SATURDAY
+public fun Calendar.isSunday() = dayOfWeek == Calendar.SUNDAY
+public fun Calendar.isMonday() = dayOfWeek == Calendar.MONDAY
+public fun Calendar.isTuesday() = dayOfWeek == Calendar.TUESDAY
+public fun Calendar.isWednesday() = dayOfWeek == Calendar.WEDNESDAY
+public fun Calendar.isThursday() = dayOfWeek == Calendar.THURSDAY
+public fun Calendar.isFriday() = dayOfWeek == Calendar.FRIDAY
+public fun Calendar.isSaturday() = dayOfWeek == Calendar.SATURDAY
 
-public fun Calendar.isJanurary() : Boolean = month == Calendar.JANUARY
-public fun Calendar.isFebruary() : Boolean = month == Calendar.FEBRUARY
-public fun Calendar.isMarch() : Boolean = month == Calendar.MARCH
-public fun Calendar.isApril() : Boolean = month == Calendar.APRIL
-public fun Calendar.isMay() : Boolean = month == Calendar.MAY
-public fun Calendar.isJune() : Boolean = month == Calendar.JUNE
-public fun Calendar.isJuly() : Boolean = month == Calendar.JULY
-public fun Calendar.isAugust() : Boolean = month == Calendar.AUGUST
-public fun Calendar.isSeptember() : Boolean = month == Calendar.SEPTEMBER
-public fun Calendar.isOctober() : Boolean = month == Calendar.OCTOBER
-public fun Calendar.isNovember() : Boolean = month == Calendar.NOVEMBER
-public fun Calendar.isDecember() : Boolean = month == Calendar.DECEMBER
+public fun Calendar.isJanurary() = month == Calendar.JANUARY
+public fun Calendar.isFebruary() = month == Calendar.FEBRUARY
+public fun Calendar.isMarch() = month == Calendar.MARCH
+public fun Calendar.isApril() = month == Calendar.APRIL
+public fun Calendar.isMay() = month == Calendar.MAY
+public fun Calendar.isJune() = month == Calendar.JUNE
+public fun Calendar.isJuly() = month == Calendar.JULY
+public fun Calendar.isAugust() = month == Calendar.AUGUST
+public fun Calendar.isSeptember() = month == Calendar.SEPTEMBER
+public fun Calendar.isOctober() = month == Calendar.OCTOBER
+public fun Calendar.isNovember() = month == Calendar.NOVEMBER
+public fun Calendar.isDecember() = month == Calendar.DECEMBER
 
-public fun Calendar.isAm() : Boolean = amPm == Calendar.AM
-public fun Calendar.isPm() : Boolean = amPm == Calendar.PM
+public fun Calendar.isAm() = amPm == Calendar.AM
+public fun Calendar.isPm() = amPm == Calendar.PM
