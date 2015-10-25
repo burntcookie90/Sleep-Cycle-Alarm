@@ -16,7 +16,8 @@ import io.dwak.sleepcyclealarm.times.WakeUpTimesFragment
 import java.util.Calendar
 import java.util.Date
 
-public class MainActivity : AppCompatActivity(), OptionsFragment.OptionsFragmentInteractionListener,
+public class MainActivity : AppCompatActivity(),
+                            OptionsFragment.OptionsFragmentInteractionListener,
                             WakeUpTimesFragment.WakeUpTimesFragmentListener {
     val toolbar : Toolbar by bindView(R.id.toolbar)
 
