@@ -1,3 +1,5 @@
+@file:JvmName("ActivityUtils")
+
 package io.dwak.sleepcyclealarm.extension
 
 import android.app.Activity

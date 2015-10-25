@@ -1,3 +1,5 @@
+@file:JvmName("ObservableUtils")
+
 package io.dwak.sleepcyclealarm.extension
 
 import rx.Observable

@@ -1,3 +1,5 @@
+@file:JvmName("FragmentActivityUtils")
+
 package io.dwak.sleepcyclealarm.extension
 
 import android.support.annotation.LayoutRes
