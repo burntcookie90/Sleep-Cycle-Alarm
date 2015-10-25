@@ -1,6 +1,7 @@
 package io.dwak.sleepcyclealarm.times
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -71,10 +72,10 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
         return inflater?.inflate(R.layout.fragment_sleep_times, container, false);
     }
 
-    override fun onAttach(activity : Activity?) {
-        super.onAttach(activity)
+    override fun onAttach(context : Context?) {
+        super.onAttach(context)
         if (activity is WakeUpTimesFragmentListener) {
-            listener = activity
+            listener = activity as WakeUpTimesFragmentListener
         }
         else {
             throw RuntimeException("${getActivity().javaClass.simpleName} must implement WakeUpTimesListener")

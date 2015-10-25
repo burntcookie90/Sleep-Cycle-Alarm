@@ -1,6 +1,7 @@
 package io.dwak.sleepcyclealarm.options
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -38,10 +39,10 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
     }
 
     //region lifecycle
-    override fun onAttach(activity : Activity?) {
-        super.onAttach(activity)
+    override fun onAttach(context : Context?) {
+        super.onAttach(context)
         if (activity is OptionsFragmentInteractionListener)
-            interactionListener = activity
+            interactionListener = activity as OptionsFragmentInteractionListener
         else
             throw RuntimeException("${getActivity().javaClass.simpleName} must implement OptionsFragmentInteractionListener")
     }

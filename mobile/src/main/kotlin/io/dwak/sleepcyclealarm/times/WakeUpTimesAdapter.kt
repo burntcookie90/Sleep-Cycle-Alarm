@@ -32,7 +32,7 @@ class WakeUpTimesAdapter(val context : Context)
         holder?.bind(sleepTime, items[position], clicks);
     }
 
-    override fun getItemCount() : Int = items.size()
+    override fun getItemCount() : Int = items.size
 
     fun subscribe(onNext : (Date) -> Unit) {
         clickSubscription = observable.subscribe(onNext)
