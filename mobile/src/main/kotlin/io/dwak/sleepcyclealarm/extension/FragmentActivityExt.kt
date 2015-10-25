@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import io.dwak.sleepcyclealarm.R
 
+@JvmOverloads
 fun FragmentActivity.navigateTo(fragment : Fragment,
                                 tag : String = fragment.toString(),
                                 addToBackStack : Boolean = true,

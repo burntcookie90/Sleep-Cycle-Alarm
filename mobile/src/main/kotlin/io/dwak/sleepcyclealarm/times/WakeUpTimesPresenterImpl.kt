@@ -3,6 +3,7 @@ package io.dwak.sleepcyclealarm.times
 import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
 import io.dwak.sleepcyclealarm.extension.fromDate
 import io.dwak.sleepcyclealarm.extension.hour
+import io.dwak.sleepcyclealarm.extension.isFriday
 import io.dwak.sleepcyclealarm.extension.minute
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
