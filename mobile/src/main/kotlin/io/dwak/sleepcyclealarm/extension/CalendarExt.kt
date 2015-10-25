@@ -1,3 +1,5 @@
+@file:JvmName("CalendarUtils")
+
 package io.dwak.sleepcyclealarm.extension
 
 import java.util.Calendar
