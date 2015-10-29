@@ -5,6 +5,9 @@ package io.dwak.sleepcyclealarm.extension
 import java.util.Calendar
 import java.util.Date
 
+/**
+ * Extension for {@link Calendar.AM_PM}
+ */
 var Calendar.amPm : Int
     get() = get(Calendar.AM_PM)
     set(value) = set(Calendar.AM_PM, value)

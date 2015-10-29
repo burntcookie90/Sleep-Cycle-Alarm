@@ -1,6 +1,8 @@
 package io.dwak.sleepcyclealarm.times
 
 import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
+import io.dwak.sleepcyclealarm.dagger.module.InteractorModule
+import io.dwak.sleepcyclealarm.dagger.scope.PresenterScope
 import io.dwak.sleepcyclealarm.extension.fromDate
 import io.dwak.sleepcyclealarm.extension.hour
 import io.dwak.sleepcyclealarm.extension.isFriday
@@ -12,8 +14,16 @@ import java.util.ArrayList
 import java.util.Calendar
 import java.util.Date
 
+@PresenterScope
 class WakeUpTimesPresenterImpl(view : WakeUpTimesView) : AbstractPresenter<WakeUpTimesView>(view),
                                                          WakeUpTimesPresenter {
+    override fun inject() {
+        interactorComponentBuilder
+        .interactorModule(InteractorModule())
+        .build()
+        .inject(this)
+    }
+
     lateinit override var sleepTime : Date
     override var isSleepNow : Boolean? = false
         set(value) {

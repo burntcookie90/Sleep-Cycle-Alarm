@@ -1,6 +1,5 @@
 package io.dwak.sleepcyclealarm.options
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -44,7 +43,7 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
         if (activity is OptionsFragmentInteractionListener)
             interactionListener = activity as OptionsFragmentInteractionListener
         else
-            throw RuntimeException("${getActivity().javaClass.simpleName} must implement OptionsFragmentInteractionListener")
+            throw RuntimeException("${activity.javaClass.simpleName} must implement OptionsFragmentInteractionListener")
     }
 
     override fun onCreateView(inflater : LayoutInflater?,

@@ -78,7 +78,7 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
             listener = activity as WakeUpTimesFragmentListener
         }
         else {
-            throw RuntimeException("${getActivity().javaClass.simpleName} must implement WakeUpTimesListener")
+            throw RuntimeException("${activity.javaClass.simpleName} must implement WakeUpTimesListener")
         }
     }
 

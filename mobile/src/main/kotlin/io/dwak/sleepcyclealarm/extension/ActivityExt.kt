@@ -22,3 +22,4 @@ fun Activity.toast(@StringRes message : Int, length : Int = Toast.LENGTH_SHORT) 
     Toast.makeText(this, message, length).show();
 }
 
+

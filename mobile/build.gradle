@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 23
@@ -33,6 +34,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    testApt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
     compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rootProject.ext.rxbindingVersion"
     compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rootProject.ext.rxbindingVersion"
     compile 'io.reactivex:rxjava:1.0.14'
