@@ -42,6 +42,7 @@ dependencies {
     compile "com.google.android.gms:play-services-wearable:8.1.0"
     provided 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.0.31-beta'
 }
 
 kapt {

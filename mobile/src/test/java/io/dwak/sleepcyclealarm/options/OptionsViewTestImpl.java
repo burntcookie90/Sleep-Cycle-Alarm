@@ -1,8 +1,6 @@
 package io.dwak.sleepcyclealarm.options;
 
-import junit.framework.Assert;
-
-import org.jetbrains.annotations.Nullable;
+import org.junit.Before;
 import org.junit.Test;
 
 import io.dwak.sleepcyclealarm.base.BaseTestView;
@@ -11,18 +9,37 @@ import io.dwak.sleepcyclealarm.dagger.module.PresenterModule;
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter;
 import io.dwak.sleepcyclealarm.view.OptionsView;
 import kotlin.Unit;
-import rx.Observable;
 import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
-public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> implements OptionsView {
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> {
     private PublishSubject<Unit> sleepNowClicks = PublishSubject.create();
     private PublishSubject<Unit> sleepLaterClicks = PublishSubject.create();
+    private OptionsView optionsView = mock(OptionsView.class);
+
+
+    @Override
+    @Before
+    public void setUp() throws Exception {
+        when(optionsView.getSleepLaterClicks())
+               .thenReturn(sleepLaterClicks.asObservable()
+                                           .observeOn(Schedulers.immediate())
+                                           .subscribeOn(Schedulers.immediate()));
+        when(optionsView.getSleepNowClicks())
+               .thenReturn(sleepNowClicks.asObservable()
+                                         .observeOn(Schedulers.immediate())
+                                         .subscribeOn(Schedulers.immediate()));
+        super.setUp();
+    }
 
     @Override
     public void inject() {
         getComponentBuilder()
-                .presenterModule(new PresenterModule(this))
+                .presenterModule(new PresenterModule(optionsView))
                 .interactorComponent(DaggerTestInteractorComponent.create())
                 .build()
                 .inject(this);
@@ -31,36 +48,12 @@ public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> implemen
     @Test
     public void testSleepNowButton() throws Exception {
         sleepNowClicks.onNext(Unit.INSTANCE);
+        verify(optionsView).navigateToSleepNow();
     }
 
     @Test
     public void testSleepLaterButton() throws Exception {
         sleepLaterClicks.onNext(Unit.INSTANCE);
-    }
-
-    @Nullable
-    @Override
-    public Observable<Unit> getSleepNowClicks() {
-        return sleepNowClicks.asObservable()
-                             .subscribeOn(Schedulers.immediate())
-                             .observeOn(Schedulers.immediate());
-    }
-
-    @Nullable
-    @Override
-    public Observable<Unit> getSleepLaterClicks() {
-        return sleepLaterClicks.asObservable()
-                               .subscribeOn(Schedulers.immediate())
-                               .observeOn(Schedulers.immediate());
-    }
-
-    @Override
-    public void navigateToSleepNow() {
-        Assert.assertTrue(true);
-    }
-
-    @Override
-    public void navigateToSleepLater() {
-        Assert.assertTrue(true);
+        verify(optionsView).navigateToSleepLater();
     }
 }

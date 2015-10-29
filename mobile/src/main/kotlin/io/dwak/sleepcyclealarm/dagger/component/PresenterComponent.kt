@@ -7,7 +7,8 @@ import io.dwak.sleepcyclealarm.options.OptionsFragment
 import io.dwak.sleepcyclealarm.times.WakeUpTimesFragment
 
 @ViewScope
-@Component(modules = arrayOf(PresenterModule::class), dependencies = arrayOf(InteractorComponent::class))
+@Component(modules = arrayOf(PresenterModule::class),
+           dependencies = arrayOf(InteractorComponent::class))
 public interface PresenterComponent {
     public fun inject(view : OptionsFragment)
 
