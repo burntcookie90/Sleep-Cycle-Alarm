@@ -23,4 +23,8 @@ public abstract class BaseTestView<T extends Presenter> implements DaggerPresent
     }
 
     public abstract void inject();
+
+    public T getPresenter() {
+        return presenter;
+    }
 }

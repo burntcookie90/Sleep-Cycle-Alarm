@@ -13,6 +13,7 @@ import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -20,7 +21,6 @@ public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> {
     private PublishSubject<Unit> sleepNowClicks = PublishSubject.create();
     private PublishSubject<Unit> sleepLaterClicks = PublishSubject.create();
     private OptionsView optionsView = mock(OptionsView.class);
-
 
     @Override
     @Before
@@ -55,5 +55,17 @@ public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> {
     public void testSleepLaterButton() throws Exception {
         sleepLaterClicks.onNext(Unit.INSTANCE);
         verify(optionsView).navigateToSleepLater();
+    }
+
+    @Test
+    public void testOnReattach() throws Exception {
+        sleepNowClicks.onNext(Unit.INSTANCE);
+
+        getPresenter().onDetachFromView();
+        getPresenter().prepareToAttachToView();
+        getPresenter().onAttachToView();
+        sleepNowClicks.onNext(Unit.INSTANCE);
+
+        verify(optionsView, times(2)).navigateToSleepNow();
     }
 }
