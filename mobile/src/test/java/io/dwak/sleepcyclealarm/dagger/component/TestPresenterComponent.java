@@ -7,7 +7,7 @@ import io.dwak.sleepcyclealarm.options.OptionsViewTestImpl;
 import io.dwak.sleepcyclealarm.times.WakeUpTimesViewTestImpl;
 
 @ViewScope
-@Component(modules = PresenterModule.class)
+@Component(modules = PresenterModule.class, dependencies = InteractorComponent.class)
 public interface TestPresenterComponent extends PresenterComponent{
     void inject(WakeUpTimesViewTestImpl view);
 

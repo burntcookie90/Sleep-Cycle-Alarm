@@ -11,6 +11,7 @@ import butterknife.bindView
 import com.jakewharton.rxbinding.view.clicks
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
+import io.dwak.sleepcyclealarm.dagger.component.DaggerInteractorComponent
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
 import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
@@ -33,6 +34,7 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
     override fun inject() {
         presenterComponentBuilder
                 .presenterModule(PresenterModule(this))
+                .interactorComponent(DaggerInteractorComponent.create())
                 .build()
                 .inject(this)
     }

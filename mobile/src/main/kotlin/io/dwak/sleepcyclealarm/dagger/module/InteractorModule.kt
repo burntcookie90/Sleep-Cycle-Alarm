@@ -2,7 +2,6 @@ package io.dwak.sleepcyclealarm.dagger.module
 
 import dagger.Module
 import dagger.Provides
-import io.dwak.sleepcyclealarm.base.mvp.Presenter
 import io.dwak.sleepcyclealarm.interactor.LoggingInteractor
 import io.dwak.sleepcyclealarm.util.LumberJack
 

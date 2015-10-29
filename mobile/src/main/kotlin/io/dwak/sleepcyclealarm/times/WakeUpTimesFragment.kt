@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import butterknife.bindView
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
+import io.dwak.sleepcyclealarm.dagger.component.DaggerInteractorComponent
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
 import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
 import io.dwak.sleepcyclealarm.model.WakeUpTime
@@ -50,7 +51,9 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
     }
 
     override fun inject() {
-        presenterComponentBuilder.presenterModule(PresenterModule(this))
+        presenterComponentBuilder
+                .presenterModule(PresenterModule(this))
+                .interactorComponent(DaggerInteractorComponent.create())
                 .build()
                 .inject(this)
     }

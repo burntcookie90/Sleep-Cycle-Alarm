@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import org.junit.Test;
 
 import io.dwak.sleepcyclealarm.base.BaseTestView;
+import io.dwak.sleepcyclealarm.dagger.component.DaggerTestInteractorComponent;
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule;
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter;
 import io.dwak.sleepcyclealarm.view.OptionsView;
@@ -20,6 +21,7 @@ public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> implemen
     public void inject() {
         getComponentBuilder()
                 .presenterModule(new PresenterModule(this))
+                .interactorComponent(DaggerTestInteractorComponent.create())
                 .build()
                 .inject(this);
     }
