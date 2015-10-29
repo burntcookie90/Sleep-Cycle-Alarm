@@ -3,7 +3,6 @@ package io.dwak.sleepcyclealarm.dagger.module
 import dagger.Module
 import dagger.Provides
 import io.dwak.sleepcyclealarm.base.mvp.PresenterView
-import io.dwak.sleepcyclealarm.dagger.component.DaggerInteractorComponent
 import io.dwak.sleepcyclealarm.dagger.component.InteractorComponent
 import io.dwak.sleepcyclealarm.options.OptionsPresenterImpl
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter

@@ -1,6 +1,5 @@
 package io.dwak.sleepcyclealarm.times
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -18,7 +17,8 @@ import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import rx.Observable
-import java.util.*
+import java.util.ArrayList
+import java.util.Date
 
 @ViewScope
 public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTimesView {

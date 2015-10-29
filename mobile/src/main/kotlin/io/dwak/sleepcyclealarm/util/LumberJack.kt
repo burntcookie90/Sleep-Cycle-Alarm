@@ -4,7 +4,7 @@ import android.util.Log
 import io.dwak.sleepcyclealarm.interactor.LoggingInteractor
 
 public class LumberJack {
-    companion object : LoggingInteractor{
+    companion object : LoggingInteractor {
         override fun verbose(tag : String, message : String) {
             Log.v(tag, message)
         }

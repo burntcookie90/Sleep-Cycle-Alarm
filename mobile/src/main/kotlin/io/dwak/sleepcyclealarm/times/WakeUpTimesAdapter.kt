@@ -4,11 +4,11 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import io.dwak.sleepcyclealarm.model.WakeUpTime
-import java.util.*
 import rx.Observable
-import rx.Subscriber
 import rx.Subscription
 import rx.subjects.PublishSubject
+import java.util.ArrayList
+import java.util.Date
 
 class WakeUpTimesAdapter(val context : Context)
 : RecyclerView.Adapter<WakeUpTimeViewHolder>() {

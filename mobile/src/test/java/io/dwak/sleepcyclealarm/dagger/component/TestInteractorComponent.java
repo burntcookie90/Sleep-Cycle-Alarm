@@ -10,7 +10,7 @@ import io.dwak.sleepcyclealarm.times.WakeUpTimesPresenterImpl;
 
 @PresenterScope
 @Component(modules = TestInteractorModule.class)
-public interface TestInteractorComponent extends InteractorComponent{
+public interface TestInteractorComponent extends InteractorComponent {
     void inject(@NonNull OptionsPresenterImpl presenter);
 
     void inject(@NonNull WakeUpTimesPresenterImpl presenter);

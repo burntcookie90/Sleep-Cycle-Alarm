@@ -1,8 +1,7 @@
 package io.dwak.sleepcyclealarm.presenter
 
 import io.dwak.sleepcyclealarm.base.mvp.Presenter
-import io.dwak.sleepcyclealarm.view.WakeUpTimesView
-import java.util.*
+import java.util.Date
 
 public interface WakeUpTimesPresenter : Presenter {
     var isSleepNow : Boolean?

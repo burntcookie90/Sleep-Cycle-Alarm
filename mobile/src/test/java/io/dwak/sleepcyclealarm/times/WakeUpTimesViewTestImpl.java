@@ -6,14 +6,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Date;
 
-import io.dwak.sleepcyclealarm.base.BaseTestView;
+import io.dwak.sleepcyclealarm.base.BaseTest;
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule;
 import io.dwak.sleepcyclealarm.model.WakeUpTime;
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter;
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView;
 import rx.Observable;
 
-public class WakeUpTimesViewTestImpl extends BaseTestView<WakeUpTimesPresenter>
+public class WakeUpTimesViewTestImpl extends BaseTest<WakeUpTimesPresenter>
         implements WakeUpTimesView {
 
     @Nullable

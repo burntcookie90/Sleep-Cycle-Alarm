@@ -4,7 +4,6 @@ import dagger.Component
 import io.dwak.sleepcyclealarm.dagger.module.InteractorModule
 import io.dwak.sleepcyclealarm.dagger.scope.PresenterScope
 import io.dwak.sleepcyclealarm.options.OptionsPresenterImpl
-import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.times.WakeUpTimesPresenterImpl
 
 @PresenterScope

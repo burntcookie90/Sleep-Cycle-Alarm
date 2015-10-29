@@ -10,7 +10,7 @@ open class InteractorModule() {
     open val lumberJack : LoggingInteractor = LumberJack
 
     @Provides
-    fun providesLoggingInteractor() : LoggingInteractor{
+    fun providesLoggingInteractor() : LoggingInteractor {
         return lumberJack
     }
 }

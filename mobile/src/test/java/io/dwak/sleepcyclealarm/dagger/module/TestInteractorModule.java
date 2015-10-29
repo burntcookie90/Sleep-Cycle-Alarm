@@ -7,7 +7,7 @@ import io.dwak.sleepcyclealarm.interactor.LoggingInteractor;
 import io.dwak.sleepcyclealarm.util.TestLumberJack;
 
 @Module
-public class TestInteractorModule extends InteractorModule{
+public class TestInteractorModule extends InteractorModule {
     @NotNull
     @Override
     public LoggingInteractor getLumberJack() {

@@ -3,7 +3,7 @@ package io.dwak.sleepcyclealarm.options;
 import org.junit.Before;
 import org.junit.Test;
 
-import io.dwak.sleepcyclealarm.base.BaseTestView;
+import io.dwak.sleepcyclealarm.base.BaseTest;
 import io.dwak.sleepcyclealarm.dagger.component.DaggerTestInteractorComponent;
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule;
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> {
+public class OptionsPresenterTest extends BaseTest<OptionsPresenter> {
     private PublishSubject<Unit> sleepNowClicks = PublishSubject.create();
     private PublishSubject<Unit> sleepLaterClicks = PublishSubject.create();
     private OptionsView optionsView = mock(OptionsView.class);
@@ -26,13 +26,13 @@ public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> {
     @Before
     public void setUp() throws Exception {
         when(optionsView.getSleepLaterClicks())
-               .thenReturn(sleepLaterClicks.asObservable()
-                                           .observeOn(Schedulers.immediate())
-                                           .subscribeOn(Schedulers.immediate()));
+                .thenReturn(sleepLaterClicks.asObservable()
+                                            .observeOn(Schedulers.immediate())
+                                            .subscribeOn(Schedulers.immediate()));
         when(optionsView.getSleepNowClicks())
-               .thenReturn(sleepNowClicks.asObservable()
-                                         .observeOn(Schedulers.immediate())
-                                         .subscribeOn(Schedulers.immediate()));
+                .thenReturn(sleepNowClicks.asObservable()
+                                          .observeOn(Schedulers.immediate())
+                                          .subscribeOn(Schedulers.immediate()));
         super.setUp();
     }
 

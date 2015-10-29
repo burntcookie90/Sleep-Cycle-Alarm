@@ -11,16 +11,15 @@ import com.jakewharton.rxbinding.view.clicks
 import io.dwak.sleepcyclealarm.R
 import io.dwak.sleepcyclealarm.extension.debounceDefault
 import io.dwak.sleepcyclealarm.model.WakeUpTime
-import rx.Observable
 import rx.subjects.PublishSubject
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
-class WakeUpTimeViewHolder(val view : View) : RecyclerView.ViewHolder(view){
+class WakeUpTimeViewHolder(val view : View) : RecyclerView.ViewHolder(view) {
     val timeFormat = SimpleDateFormat("hh:mm a")
     val differenceFormat = SimpleDateFormat("hh:mm")
     val timeText : TextView by bindView(R.id.time_text)
-    val subtitle: TextView by bindView(R.id.subtitle)
+    val subtitle : TextView by bindView(R.id.subtitle)
 
     companion object {
         fun create(context : Context, parent : ViewGroup?) : WakeUpTimeViewHolder {
