@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import io.dwak.sleepcyclealarm.interactor.LoggingInteractor;
 
-public class TestLumberJack implements LoggingInteractor{
+public class TestLumberJack implements LoggingInteractor {
 
     @Override
     public void verbose(@NotNull String tag, @NotNull String message) {

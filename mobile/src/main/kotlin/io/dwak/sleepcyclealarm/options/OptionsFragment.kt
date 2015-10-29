@@ -14,9 +14,13 @@ import io.dwak.sleepcyclealarm.base.mvp.MvpFragment
 import io.dwak.sleepcyclealarm.dagger.component.DaggerInteractorComponent
 import io.dwak.sleepcyclealarm.dagger.module.PresenterModule
 import io.dwak.sleepcyclealarm.dagger.scope.ViewScope
+import io.dwak.sleepcyclealarm.extension.debounceDefault
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 import rx.Observable
+import rx.Scheduler
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 @ViewScope
 public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
@@ -26,8 +30,18 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
 
     val sleepNowButton : TextView by bindView(R.id.sleep_now_button)
     val sleepLaterButton : TextView by bindView(R.id.sleep_later_button)
-    override val sleepNowClicks : Observable<Unit> get() = sleepNowButton.clicks()
-    override val sleepLaterClicks : Observable<Unit> get() = sleepLaterButton.clicks()
+    override val sleepNowClicks : Observable<Unit>
+        get() = sleepNowButton
+                .clicks()
+                .observeOn(Schedulers.immediate())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .debounceDefault()
+    override val sleepLaterClicks : Observable<Unit>
+        get() = sleepLaterButton
+                .clicks()
+                .observeOn(Schedulers.immediate())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .debounceDefault()
 
     var interactionListener : OptionsFragmentInteractionListener? = null
 

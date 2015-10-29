@@ -38,6 +38,7 @@ dependencies {
     compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rootProject.ext.rxbindingVersion"
     compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rootProject.ext.rxbindingVersion"
     compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
     compile "com.google.android.gms:play-services-wearable:8.1.0"
     provided 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'

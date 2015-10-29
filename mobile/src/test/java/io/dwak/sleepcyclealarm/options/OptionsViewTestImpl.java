@@ -12,11 +12,13 @@ import io.dwak.sleepcyclealarm.presenter.OptionsPresenter;
 import io.dwak.sleepcyclealarm.view.OptionsView;
 import kotlin.Unit;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
 public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> implements OptionsView {
     private PublishSubject<Unit> sleepNowClicks = PublishSubject.create();
     private PublishSubject<Unit> sleepLaterClicks = PublishSubject.create();
+
     @Override
     public void inject() {
         getComponentBuilder()
@@ -28,24 +30,28 @@ public class OptionsViewTestImpl extends BaseTestView<OptionsPresenter> implemen
 
     @Test
     public void testSleepNowButton() throws Exception {
-        sleepNowClicks.onNext(null);
+        sleepNowClicks.onNext(Unit.INSTANCE);
     }
 
     @Test
     public void testSleepLaterButton() throws Exception {
-        sleepLaterClicks.onNext(null);
+        sleepLaterClicks.onNext(Unit.INSTANCE);
     }
 
     @Nullable
     @Override
     public Observable<Unit> getSleepNowClicks() {
-        return sleepNowClicks.asObservable();
+        return sleepNowClicks.asObservable()
+                             .subscribeOn(Schedulers.immediate())
+                             .observeOn(Schedulers.immediate());
     }
 
     @Nullable
     @Override
     public Observable<Unit> getSleepLaterClicks() {
-        return sleepLaterClicks.asObservable();
+        return sleepLaterClicks.asObservable()
+                               .subscribeOn(Schedulers.immediate())
+                               .observeOn(Schedulers.immediate());
     }
 
     @Override

@@ -24,14 +24,12 @@ public class OptionsPresenterImpl(view : OptionsView, interactorComponent : Inte
         inject()
         with(subscriptions) {
             add(view.sleepLaterClicks
-                        ?.debounceDefault()
                         ?.subscribe {
                             logger.debug("Presenter", "Sleep Later")
                             view.navigateToSleepLater()
                         }
             )
             add(view.sleepNowClicks
-                        ?.debounceDefault()
                         ?.subscribe {
                             logger.debug("Presenter", "Sleep Now")
                             view.navigateToSleepNow()
