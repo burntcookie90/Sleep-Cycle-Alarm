@@ -3,8 +3,8 @@ package io.dwak.sleepcyclealarm.dagger.component
 import dagger.Component
 import io.dwak.sleepcyclealarm.dagger.module.InteractorModule
 import io.dwak.sleepcyclealarm.dagger.scope.PresenterScope
-import io.dwak.sleepcyclealarm.options.OptionsPresenterImpl
-import io.dwak.sleepcyclealarm.times.WakeUpTimesPresenterImpl
+import io.dwak.sleepcyclealarm.ui.options.OptionsPresenterImpl
+import io.dwak.sleepcyclealarm.ui.times.WakeUpTimesPresenterImpl
 
 @PresenterScope
 @Component(modules = arrayOf(InteractorModule::class))

@@ -11,8 +11,8 @@ import io.dwak.sleepcyclealarm.extension.hour
 import io.dwak.sleepcyclealarm.extension.minute
 import io.dwak.sleepcyclealarm.extension.navigateTo
 import io.dwak.sleepcyclealarm.extension.toast
-import io.dwak.sleepcyclealarm.options.OptionsFragment
-import io.dwak.sleepcyclealarm.times.WakeUpTimesFragment
+import io.dwak.sleepcyclealarm.ui.options.OptionsFragment
+import io.dwak.sleepcyclealarm.ui.times.WakeUpTimesFragment
 import java.util.Calendar
 import java.util.Date
 
@@ -25,7 +25,7 @@ public class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        navigateTo(OptionsFragment.newInstance(), addToBackStack = false);
+        navigateTo(OptionsFragment.newInstance(), addToBackStack = false)
     }
 
     override fun navigateToSleepTimes(sleepNow : Boolean) {
@@ -38,10 +38,11 @@ public class MainActivity : AppCompatActivity(),
 
     override fun setAlarm(wakeUpTime : Date) {
         val calendar = Calendar.getInstance().fromDate(wakeUpTime)
-        val alarmIntent = Intent(AlarmClock.ACTION_SET_ALARM)
-        alarmIntent.putExtra(AlarmClock.EXTRA_MESSAGE, "");
-        alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, calendar.hour);
-        alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, calendar.minute);
-        startActivity(alarmIntent);
+        with(Intent(AlarmClock.ACTION_SET_ALARM)){
+            putExtra(AlarmClock.EXTRA_MESSAGE, "");
+            putExtra(AlarmClock.EXTRA_HOUR, calendar.hour);
+            putExtra(AlarmClock.EXTRA_MINUTES, calendar.minute);
+            startActivity(this);
+        }
     }
 }

@@ -1,11 +1,11 @@
-package io.dwak.sleepcyclealarm.options;
+package io.dwak.sleepcyclealarm.ui.options;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import io.dwak.sleepcyclealarm.base.BaseTest;
 import io.dwak.sleepcyclealarm.dagger.component.DaggerTestInteractorComponent;
-import io.dwak.sleepcyclealarm.dagger.module.PresenterModule;
+import io.dwak.sleepcyclealarm.dagger.module.TestPresenterModule;
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter;
 import io.dwak.sleepcyclealarm.view.OptionsView;
 import kotlin.Unit;
@@ -39,7 +39,7 @@ public class OptionsPresenterTest extends BaseTest<OptionsPresenter> {
     @Override
     public void inject() {
         getComponentBuilder()
-                .presenterModule(new PresenterModule(optionsView))
+                .presenterModule(new TestPresenterModule(optionsView))
                 .interactorComponent(DaggerTestInteractorComponent.create())
                 .build()
                 .inject(this);

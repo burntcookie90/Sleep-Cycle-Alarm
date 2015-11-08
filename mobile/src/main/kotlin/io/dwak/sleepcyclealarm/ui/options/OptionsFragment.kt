@@ -1,4 +1,4 @@
-package io.dwak.sleepcyclealarm.options
+package io.dwak.sleepcyclealarm.ui.options
 
 import android.content.Context
 import android.os.Bundle

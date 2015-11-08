@@ -1,4 +1,4 @@
-package io.dwak.sleepcyclealarm.times
+package io.dwak.sleepcyclealarm.ui.times
 
 import android.content.Context
 import android.os.Bundle
@@ -17,7 +17,6 @@ import io.dwak.sleepcyclealarm.model.WakeUpTime
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 import rx.Observable
-import java.util.ArrayList
 import java.util.Date
 
 @ViewScope
@@ -61,11 +60,13 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
     //region lifecycle
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments?.containsKey(EXTRA_SLEEP_NOW)!!) {
-            presenter.isSleepNow = arguments?.getBoolean(EXTRA_SLEEP_NOW, false);
-        }
-        else if (arguments?.containsKey(EXTRA_SLEEP_LATER_TIME)!!) {
-            presenter.sleepTime = arguments?.getSerializable(EXTRA_SLEEP_LATER_TIME) as Date
+        with(arguments) {
+            if (containsKey(EXTRA_SLEEP_NOW)) {
+                presenter.isSleepNow = getBoolean(EXTRA_SLEEP_NOW, false);
+            }
+            else if (containsKey(EXTRA_SLEEP_LATER_TIME)) {
+                presenter.sleepTime = getSerializable(EXTRA_SLEEP_LATER_TIME) as Date
+            }
         }
     }
 
@@ -96,7 +97,7 @@ public class WakeUpTimesFragment : MvpFragment<WakeUpTimesPresenter>(), WakeUpTi
     //endregion
 
     override fun showTimes(sleepTime : Date,
-                           wakeupTimes : ArrayList<WakeUpTime>) {
+                           wakeupTimes : List<WakeUpTime>) {
         adapter.sleepTime = sleepTime
         wakeupTimes.forEach { adapter.addTime(it) }
     }

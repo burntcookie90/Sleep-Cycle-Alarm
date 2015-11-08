@@ -3,7 +3,6 @@ package io.dwak.sleepcyclealarm.view
 import io.dwak.sleepcyclealarm.base.mvp.PresenterView
 import io.dwak.sleepcyclealarm.model.WakeUpTime
 import rx.Observable
-import java.util.ArrayList
 import java.util.Date
 
 public interface WakeUpTimesView : PresenterView {
@@ -11,7 +10,7 @@ public interface WakeUpTimesView : PresenterView {
         get
 
     fun showTimes(sleepTime : Date,
-                  wakeupTimes : ArrayList<WakeUpTime>)
+                  wakeupTimes : List<WakeUpTime>)
 
     fun setAlarm(wakeUpTime : Date)
 }

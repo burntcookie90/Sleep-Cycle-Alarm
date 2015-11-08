@@ -1,4 +1,4 @@
-package io.dwak.sleepcyclealarm.times
+package io.dwak.sleepcyclealarm.ui.times
 
 import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
 import io.dwak.sleepcyclealarm.dagger.component.InteractorComponent
@@ -14,8 +14,8 @@ import java.util.Calendar
 import java.util.Date
 
 @PresenterScope
-class WakeUpTimesPresenterImpl(view : WakeUpTimesView, interactorComponent : InteractorComponent) : AbstractPresenter<WakeUpTimesView>(view, interactorComponent),
-                                                                                                    WakeUpTimesPresenter {
+open class WakeUpTimesPresenterImpl(view : WakeUpTimesView, interactorComponent : InteractorComponent)
+: AbstractPresenter<WakeUpTimesView>(view, interactorComponent), WakeUpTimesPresenter {
     override fun inject() {
         interactorComponent.inject(this)
     }
@@ -24,6 +24,7 @@ class WakeUpTimesPresenterImpl(view : WakeUpTimesView, interactorComponent : Int
     override var isSleepNow : Boolean? = false
         set(value) {
             field = value
+            logger.debug("WakeUpTimesPresenter", "isSleepNow : $field")
             if (field!!) {
                 sleepTime = Calendar.getInstance().time
             }
@@ -33,6 +34,7 @@ class WakeUpTimesPresenterImpl(view : WakeUpTimesView, interactorComponent : Int
 
     override fun onAttachToView() {
         super.onAttachToView()
+        inject()
         subscriptions.add(view.itemClicks?.subscribe { wakeUpTimeSelected(it) })
     }
 
