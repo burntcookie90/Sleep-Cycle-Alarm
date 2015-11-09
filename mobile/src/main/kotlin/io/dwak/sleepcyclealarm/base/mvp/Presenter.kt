@@ -1,10 +1,12 @@
 package io.dwak.sleepcyclealarm.base.mvp
 
 import rx.Subscription
+import rx.subscriptions.CompositeSubscription
 import java.util.ArrayList
 
 public interface Presenter {
-    val subscriptions : ArrayList<Subscription?>
+    val viewSubscription : CompositeSubscription
+
     public open fun prepareToAttachToView() {
 
     }
@@ -13,7 +15,6 @@ public interface Presenter {
     }
 
     public open fun onDetachFromView() {
-        subscriptions.forEach { it?.unsubscribe() }
-        subscriptions.clear()
+        viewSubscription.clear()
     }
 }

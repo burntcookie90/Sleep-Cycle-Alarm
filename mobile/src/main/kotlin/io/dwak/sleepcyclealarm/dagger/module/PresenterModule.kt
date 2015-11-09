@@ -8,6 +8,7 @@ import io.dwak.sleepcyclealarm.ui.options.OptionsPresenterImpl
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter
 import io.dwak.sleepcyclealarm.ui.times.WakeUpTimesPresenterImpl
+import io.dwak.sleepcyclealarm.util.PresenterCache
 import io.dwak.sleepcyclealarm.view.OptionsView
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView
 
@@ -23,9 +24,9 @@ public open class PresenterModule(val view : PresenterView) {
         return optionsPresenter(view as OptionsView, interactorComponent)
     }
 
-    open fun wakeUpTimesPresenter(view : WakeUpTimesView, interactorComponent : InteractorComponent) : WakeUpTimesPresenter
-            = WakeUpTimesPresenterImpl(view, interactorComponent)
+    open fun wakeUpTimesPresenter(view : WakeUpTimesView, interactorComponent : InteractorComponent)
+            = (PresenterCache.getPresenter(view)?: WakeUpTimesPresenterImpl(view, interactorComponent)) as WakeUpTimesPresenterImpl
 
-    open fun optionsPresenter(view : OptionsView, interactorComponent : InteractorComponent) : OptionsPresenter
-            = OptionsPresenterImpl(view, interactorComponent)
+    open fun optionsPresenter(view : OptionsView, interactorComponent : InteractorComponent)
+            = (PresenterCache.getPresenter(view)?: OptionsPresenterImpl(view, interactorComponent)) as OptionsPresenterImpl
 }

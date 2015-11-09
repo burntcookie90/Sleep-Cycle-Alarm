@@ -43,6 +43,7 @@ public class OptionsPresenterTest extends BaseTest<OptionsPresenter> {
                 .interactorComponent(DaggerTestInteractorComponent.create())
                 .build()
                 .inject(this);
+
     }
 
     @Test

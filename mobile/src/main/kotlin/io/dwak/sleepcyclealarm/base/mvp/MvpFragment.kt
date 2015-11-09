@@ -2,6 +2,7 @@ package io.dwak.sleepcyclealarm.base.mvp
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import io.dwak.sleepcyclealarm.util.PresenterCache
 import javax.inject.Inject
 
 public abstract class MvpFragment<T : Presenter> : Fragment(), DaggerPresenterView {

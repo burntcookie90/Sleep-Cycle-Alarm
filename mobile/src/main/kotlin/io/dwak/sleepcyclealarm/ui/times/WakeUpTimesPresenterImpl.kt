@@ -13,7 +13,6 @@ import java.util.ArrayList
 import java.util.Calendar
 import java.util.Date
 
-@PresenterScope
 open class WakeUpTimesPresenterImpl(view : WakeUpTimesView, interactorComponent : InteractorComponent)
 : AbstractPresenter<WakeUpTimesView>(view, interactorComponent), WakeUpTimesPresenter {
     override fun inject() {
@@ -34,8 +33,7 @@ open class WakeUpTimesPresenterImpl(view : WakeUpTimesView, interactorComponent 
 
     override fun onAttachToView() {
         super.onAttachToView()
-        inject()
-        subscriptions.add(view.itemClicks?.subscribe { wakeUpTimeSelected(it) })
+        viewSubscription.add(view.itemClicks?.subscribe { wakeUpTimeSelected(it) })
     }
 
     override fun getTimes() {

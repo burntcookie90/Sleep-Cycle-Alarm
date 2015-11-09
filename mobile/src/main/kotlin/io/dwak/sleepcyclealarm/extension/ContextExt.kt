@@ -13,9 +13,9 @@ import android.support.v4.content.ContextCompat
 import android.widget.Toast
 
 @ColorInt
-public fun Context.getColor(@ColorRes id : Int) = ContextCompat.getColor(this, id)
+public fun Context.getColorCompat(@ColorRes id : Int) = ContextCompat.getColor(this, id)
 
-public fun Context.getDrawable(@DrawableRes id : Int) = ContextCompat.getDrawable(this, id)
+public fun Context.getDrawableCompat(@DrawableRes id : Int) = ContextCompat.getDrawable(this, id)
 
 @JvmOverloads
 fun Context.toast(message : String, length : Int = Toast.LENGTH_SHORT) = Toast.makeText(this, message, length).show()

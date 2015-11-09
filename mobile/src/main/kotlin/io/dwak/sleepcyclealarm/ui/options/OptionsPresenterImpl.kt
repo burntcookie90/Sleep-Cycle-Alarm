@@ -3,6 +3,7 @@ package io.dwak.sleepcyclealarm.ui.options
 import io.dwak.sleepcyclealarm.base.mvp.AbstractPresenter
 import io.dwak.sleepcyclealarm.dagger.component.InteractorComponent
 import io.dwak.sleepcyclealarm.dagger.scope.PresenterScope
+import io.dwak.sleepcyclealarm.extension.debounceDefault
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter
 import io.dwak.sleepcyclealarm.view.OptionsView
 
@@ -15,16 +16,15 @@ public open class OptionsPresenterImpl(view : OptionsView, interactorComponent :
 
     override fun onAttachToView() {
         super.onAttachToView()
-        inject()
-        with(subscriptions) {
+        with(viewSubscription) {
             add(view.sleepLaterClicks
-                        ?.subscribe {
+                        .subscribe {
                             logger.debug("Presenter", "Sleep Later")
                             view.navigateToSleepLater()
                         }
             )
             add(view.sleepNowClicks
-                        ?.subscribe {
+                        .subscribe {
                             logger.debug("Presenter", "Sleep Now")
                             view.navigateToSleepNow()
                         }

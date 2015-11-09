@@ -13,10 +13,7 @@ fun FragmentActivity.navigateTo(fragment : Fragment,
                                 tag : String = fragment.toString(),
                                 addToBackStack : Boolean = true,
                                 @LayoutRes container : Int = R.id.container,
-                                animate : FragmentTransaction.() -> Unit = {
-                                    setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
-                                                        R.anim.enter_from_left, R.anim.exit_to_right)
-                                }) {
+                                animate : FragmentTransaction.() -> Unit = {}) {
     val transaction = supportFragmentManager.beginTransaction()
 
     if (addToBackStack) {

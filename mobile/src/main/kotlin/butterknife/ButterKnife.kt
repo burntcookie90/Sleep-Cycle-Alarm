@@ -98,8 +98,10 @@ private fun viewNotFound(id : Int, desc : KProperty<*>) : Nothing =
         throw IllegalStateException("View ID $id for '${desc.name}' not found.")
 
 @Suppress("UNCHECKED_CAST")
-private fun <T, V : View> required(id : Int, finder : T.(Int) -> View?)
-        = Lazy { t : T, desc -> t.finder(id) as V? ?: viewNotFound(id, desc) }
+private fun <T, V : View> required(id : Int, finder : T.(Int) -> View?) : Lazy<T, V> {
+    return Lazy({ t : T,
+                  desc : KProperty<*> -> t.finder(id) as V? ?: viewNotFound(id, desc) })
+}
 
 @Suppress("UNCHECKED_CAST")
 private fun <T, V : View> optional(id : Int, finder : T.(Int) -> View?)

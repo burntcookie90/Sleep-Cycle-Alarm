@@ -5,9 +5,9 @@ import rx.Observable
 
 public interface OptionsView : PresenterView {
 
-    val sleepNowClicks : Observable<Unit>?
+    val sleepNowClicks : Observable<Unit>
 
-    val sleepLaterClicks : Observable<Unit>?
+    val sleepLaterClicks : Observable<Unit>
 
     fun navigateToSleepNow()
 
