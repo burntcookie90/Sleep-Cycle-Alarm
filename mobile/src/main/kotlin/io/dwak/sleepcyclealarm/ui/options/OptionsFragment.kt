@@ -72,18 +72,16 @@ public class OptionsFragment : MvpFragment<OptionsPresenter>(), OptionsView {
 
     //region view methods
     override fun navigateToSleepNow() {
-        interactionListener?.navigateToSleepTimes(true)
+        interactionListener?.navigateToSleepTimes(sleepNow = true)
     }
 
     override fun navigateToSleepLater() {
-        interactionListener?.navigateToSleepLater()
+        interactionListener?.navigateToSleepTimes(sleepNow = false)
     }
     //endregion
 
     public interface OptionsFragmentInteractionListener {
         fun navigateToSleepTimes(sleepNow : Boolean)
-
-        fun navigateToSleepLater()
     }
 }
 

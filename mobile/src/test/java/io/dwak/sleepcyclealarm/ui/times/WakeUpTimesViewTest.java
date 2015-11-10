@@ -17,7 +17,6 @@ import io.dwak.sleepcyclealarm.extension.CalendarUtils;
 import io.dwak.sleepcyclealarm.model.WakeUpTime;
 import io.dwak.sleepcyclealarm.presenter.WakeUpTimesPresenter;
 import io.dwak.sleepcyclealarm.view.WakeUpTimesView;
-import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
 import static org.mockito.Matchers.any;
@@ -36,9 +35,7 @@ public class WakeUpTimesViewTest extends BaseTest<WakeUpTimesPresenter> {
     @Before
     public void setUp() throws Exception {
         when(view.getItemClicks())
-                .thenReturn(itemClicks.asObservable()
-                                      .subscribeOn(Schedulers.immediate())
-                                      .observeOn(Schedulers.immediate()));
+                .thenReturn(itemClicks.asObservable());
         super.setUp();
     }
 

@@ -13,6 +13,7 @@ import io.dwak.sleepcyclealarm.extension.minute
 import io.dwak.sleepcyclealarm.extension.navigateTo
 import io.dwak.sleepcyclealarm.ui.options.OptionsFragment
 import io.dwak.sleepcyclealarm.ui.times.WakeUpTimesFragment
+import java.util.ArrayList
 import java.util.Calendar
 import java.util.Date
 
@@ -29,27 +30,30 @@ public class MainActivity : AppCompatActivity(),
     }
 
     override fun navigateToSleepTimes(sleepNow : Boolean) {
-        navigateTo(WakeUpTimesFragment.newInstance(sleepNow), tag = "SleepNow") {
-            setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
-                                R.anim.enter_from_left, R.anim.exit_to_right)
-        }
-    }
-
-    override fun navigateToSleepLater() {
-        with(Calendar.getInstance()) {
-            TimePickerDialog(this@MainActivity,
-                             { v, h, m->
-                                 hourOfDay = h
-                                 minute = m
-                                 navigateTo(WakeUpTimesFragment.newInstance(time), tag = "SleepLater") {
-                                     setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
-                                                         R.anim.enter_from_left, R.anim.exit_to_right)
-                                 }
-                             },
-                             hourOfDay,
-                             minute,
-                             false)
-                    .show()
+        when {
+            sleepNow -> {
+                navigateTo(WakeUpTimesFragment.newInstance(sleepNow), tag = "SleepNow") {
+                    setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                                        R.anim.enter_from_left, R.anim.exit_to_right)
+                }
+            }
+            else -> {
+                with(Calendar.getInstance()) {
+                    TimePickerDialog(this@MainActivity,
+                                     { v, h, m->
+                                         hourOfDay = h
+                                         minute = m
+                                         navigateTo(WakeUpTimesFragment.newInstance(time), tag = "SleepLater") {
+                                             setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                                                                 R.anim.enter_from_left, R.anim.exit_to_right)
+                                         }
+                                     },
+                                     hourOfDay,
+                                     minute,
+                                     false)
+                            .show()
+                }
+            }
         }
     }
 
@@ -61,5 +65,6 @@ public class MainActivity : AppCompatActivity(),
             putExtra(AlarmClock.EXTRA_MINUTES, calendar.minute);
             startActivity(this);
         }
+
     }
 }
