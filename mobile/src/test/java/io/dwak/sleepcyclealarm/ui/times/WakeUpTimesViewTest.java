@@ -54,6 +54,20 @@ public class WakeUpTimesViewTest extends BaseTest<WakeUpTimesPresenter> {
     @Test
     public void testSleepNowTimes() throws Exception {
         getPresenter().setSleepNow(true);
+        verifyCalculatedTimes();
+    }
+
+    @Test
+    public void testSleepLaterTimes() throws Exception {
+        getPresenter().setSleepNow(false);
+        Calendar sleepLaterTime = Calendar.getInstance();
+        CalendarUtils.setHourOfDay(sleepLaterTime, 12);
+        CalendarUtils.setMinute(sleepLaterTime, 00);
+        getPresenter().setSleepTime(sleepLaterTime.getTime());
+        verifyCalculatedTimes();
+    }
+
+    private void verifyCalculatedTimes() {
         Date now = getPresenter().getSleepTime();
         Assert.assertNotNull(now);
         doAnswer(invocation -> {
@@ -89,10 +103,5 @@ public class WakeUpTimesViewTest extends BaseTest<WakeUpTimesPresenter> {
 
         getPresenter().getTimes();
         verify(view).showTimes(any(Date.class), anyListOf(WakeUpTime.class));
-    }
-
-    @Test
-    public void testSleepLaterTimes() throws Exception {
-        getPresenter().setSleepNow(false);
     }
 }

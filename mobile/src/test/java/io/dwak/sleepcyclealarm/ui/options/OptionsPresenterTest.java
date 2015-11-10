@@ -9,7 +9,6 @@ import io.dwak.sleepcyclealarm.dagger.module.TestPresenterModule;
 import io.dwak.sleepcyclealarm.presenter.OptionsPresenter;
 import io.dwak.sleepcyclealarm.view.OptionsView;
 import kotlin.Unit;
-import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
 import static org.mockito.Mockito.mock;
@@ -26,13 +25,9 @@ public class OptionsPresenterTest extends BaseTest<OptionsPresenter> {
     @Before
     public void setUp() throws Exception {
         when(optionsView.getSleepLaterClicks())
-                .thenReturn(sleepLaterClicks.asObservable()
-                                            .observeOn(Schedulers.immediate())
-                                            .subscribeOn(Schedulers.immediate()));
+                .thenReturn(sleepLaterClicks.asObservable());
         when(optionsView.getSleepNowClicks())
-                .thenReturn(sleepNowClicks.asObservable()
-                                          .observeOn(Schedulers.immediate())
-                                          .subscribeOn(Schedulers.immediate()));
+                .thenReturn(sleepNowClicks.asObservable());
         super.setUp();
     }
 

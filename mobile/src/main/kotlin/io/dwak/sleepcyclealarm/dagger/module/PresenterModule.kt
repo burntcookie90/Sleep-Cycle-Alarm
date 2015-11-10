@@ -24,9 +24,9 @@ public open class PresenterModule(val view : PresenterView) {
         return optionsPresenter(view as OptionsView, interactorComponent)
     }
 
-    open fun wakeUpTimesPresenter(view : WakeUpTimesView, interactorComponent : InteractorComponent)
+    open fun wakeUpTimesPresenter(view : WakeUpTimesView, interactorComponent : InteractorComponent) : WakeUpTimesPresenter
             = (PresenterCache.getPresenter(view)?: WakeUpTimesPresenterImpl(view, interactorComponent)) as WakeUpTimesPresenterImpl
 
-    open fun optionsPresenter(view : OptionsView, interactorComponent : InteractorComponent)
+    open fun optionsPresenter(view : OptionsView, interactorComponent : InteractorComponent) : OptionsPresenter
             = (PresenterCache.getPresenter(view)?: OptionsPresenterImpl(view, interactorComponent)) as OptionsPresenterImpl
 }
