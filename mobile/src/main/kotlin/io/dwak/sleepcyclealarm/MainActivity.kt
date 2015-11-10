@@ -39,9 +39,9 @@ public class MainActivity : AppCompatActivity(),
         with(Calendar.getInstance()) {
             TimePickerDialog(this@MainActivity,
                              { v, h, m->
-                                 this.hourOfDay = h
-                                 this.minute = m
-                                 navigateTo(WakeUpTimesFragment.newInstance(this.time), tag = "SleepLater") {
+                                 hourOfDay = h
+                                 minute = m
+                                 navigateTo(WakeUpTimesFragment.newInstance(time), tag = "SleepLater") {
                                      setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
                                                          R.anim.enter_from_left, R.anim.exit_to_right)
                                  }
