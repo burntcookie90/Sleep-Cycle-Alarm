@@ -29,7 +29,7 @@ public class MainActivity : AppCompatActivity(),
         navigateTo(OptionsFragment.newInstance(), addToBackStack = false)
     }
 
-    override fun navigateToSleepTimes(sleepNow : Boolean) {
+    override fun navigateToWakeUpTimes(sleepNow : Boolean) {
         when {
             sleepNow -> {
                 navigateTo(WakeUpTimesFragment.newInstance(sleepNow), tag = "SleepNow") {
