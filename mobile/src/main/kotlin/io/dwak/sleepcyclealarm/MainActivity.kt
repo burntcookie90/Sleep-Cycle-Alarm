@@ -1,5 +1,6 @@
 package io.dwak.sleepcyclealarm
 
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.provider.AlarmClock
@@ -7,10 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import butterknife.bindView
 import io.dwak.sleepcyclealarm.extension.fromDate
-import io.dwak.sleepcyclealarm.extension.hour
+import io.dwak.sleepcyclealarm.extension.hourOfDay
 import io.dwak.sleepcyclealarm.extension.minute
 import io.dwak.sleepcyclealarm.extension.navigateTo
-import io.dwak.sleepcyclealarm.extension.toast
 import io.dwak.sleepcyclealarm.ui.options.OptionsFragment
 import io.dwak.sleepcyclealarm.ui.times.WakeUpTimesFragment
 import java.util.Calendar
@@ -29,18 +29,35 @@ public class MainActivity : AppCompatActivity(),
     }
 
     override fun navigateToSleepTimes(sleepNow : Boolean) {
-        navigateTo(WakeUpTimesFragment.newInstance(sleepNow), tag = "SleepNow")
+        navigateTo(WakeUpTimesFragment.newInstance(sleepNow), tag = "SleepNow") {
+            setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                                R.anim.enter_from_left, R.anim.exit_to_right)
+        }
     }
 
     override fun navigateToSleepLater() {
-        toast("Not working")
+        with(Calendar.getInstance()) {
+            TimePickerDialog(this@MainActivity,
+                             { v, h, m->
+                                 this.hourOfDay = h
+                                 this.minute = m
+                                 navigateTo(WakeUpTimesFragment.newInstance(this.time), tag = "SleepLater") {
+                                     setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                                                         R.anim.enter_from_left, R.anim.exit_to_right)
+                                 }
+                             },
+                             hourOfDay,
+                             minute,
+                             false)
+                    .show()
+        }
     }
 
     override fun setAlarm(wakeUpTime : Date) {
         val calendar = Calendar.getInstance().fromDate(wakeUpTime)
-        with(Intent(AlarmClock.ACTION_SET_ALARM)){
+        with(Intent(AlarmClock.ACTION_SET_ALARM)) {
             putExtra(AlarmClock.EXTRA_MESSAGE, "");
-            putExtra(AlarmClock.EXTRA_HOUR, calendar.hour);
+            putExtra(AlarmClock.EXTRA_HOUR, calendar.hourOfDay);
             putExtra(AlarmClock.EXTRA_MINUTES, calendar.minute);
             startActivity(this);
         }

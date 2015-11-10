@@ -9,10 +9,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
-        android:background="?colorPrimary"/>
+        android:background="?colorPrimaryDark"/>
 
     <FrameLayout
         android:id="@+id/container"
+        android:background="?colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

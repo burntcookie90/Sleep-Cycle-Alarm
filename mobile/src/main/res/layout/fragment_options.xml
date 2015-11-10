@@ -9,6 +9,8 @@
         android:id="@+id/sleep_now_button"
         android:gravity="center"
         android:text="Sleep Now"
+        android:background="@drawable/color_primary_button_touch_overlay"
+        android:textSize="22sp"
         app:layout_heightPercent="50%"
         app:layout_widthPercent="100%"/>
 
@@ -17,6 +19,8 @@
         android:layout_below="@id/sleep_now_button"
         android:gravity="center"
         android:text="Sleep Later"
+        android:background="@drawable/color_primary_button_touch_overlay"
+        android:textSize="22sp"
         app:layout_heightPercent="50%"
         app:layout_widthPercent="100%"/>
 </android.support.percent.PercentRelativeLayout>

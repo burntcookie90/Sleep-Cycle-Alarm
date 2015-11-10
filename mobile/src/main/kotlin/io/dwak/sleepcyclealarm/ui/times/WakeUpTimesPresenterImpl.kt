@@ -48,7 +48,7 @@ open class WakeUpTimesPresenterImpl(view : WakeUpTimesView, interactorComponent 
                         hour += 1
                         minute += 30
                     }
-                    wakeupTimeList?.add(WakeUpTime(i + 1, "blah", sleepTime.time))
+                    wakeupTimeList?.add(WakeUpTime(i + 1, "Cycles", sleepTime.time))
                 }
                 view.showTimes(this.sleepTime, wakeupTimeList!!)
             }
